@@ -1,0 +1,5 @@
+root:	"/fast/work/groups/ag_ohler/dharnet_m/Mitochondrialribo/",
+REF_orig:	"/fast/work/groups/ag_ohler/dharnet_m/genomes/hg38.fa",
+GTF_orig:	"../ext_data/annotation/gencode.v30.annotation.gtf.gz",
+sample_files:	"../src/read_files.csv",
+sample_parameter:	"../src/sample_parameter.csv",

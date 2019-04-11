@@ -1,0 +1,10 @@
+sample_id,library_layout,read_pattern,protocol,fragment_length_mean,fragment_length_sd,group,isko,assay
+METTL8-ko1-rep1,SINGLE,-f *fastq.gz,yes,28,2,METTL8-ko1,1,ribo
+METTL8-ko1-rep2,SINGLE,-f *fastq.gz,yes,28,2,METTL8-ko1,1,ribo
+METTL8-ko1-rep3,SINGLE,-f *fastq.gz,yes,28,2,METTL8-ko1,1,ribo
+METTL8-ko2-rep1,SINGLE,-f *fastq.gz,yes,28,2,METTL8-ko2,1,ribo
+METTL8-ko3-rep1,SINGLE,-f *fastq.gz,yes,28,2,METTL8-ko3,1,ribo
+METTL8-ko4-rep1,SINGLE,-f *fastq.gz,yes,28,2,METTL8-ko4,1,ribo
+WT-rep1,SINGLE,-f *fastq.gz,yes,28,2,WT,0,ribo
+WT-rep2,SINGLE,-f *fastq.gz,yes,28,2,WT,0,ribo
+WT-rep3,SINGLE,-f *fastq.gz,yes,28,2,WT,0,ribo

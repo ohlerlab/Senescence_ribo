@@ -1,0 +1,10 @@
+sample_id,file
+METTL8-ko1-rep1,/fast/work/groups/ag_ohler/dharnet_m/Mitochondrialribo/pipeline/input/METTL8-ko1-rep1/METTL8-ko1-rep1.fastq.gz
+METTL8-ko1-rep2,/fast/work/groups/ag_ohler/dharnet_m/Mitochondrialribo/pipeline/input/METTL8-ko1-rep2/METTL8-ko1-rep2.fastq.gz
+METTL8-ko1-rep3,/fast/work/groups/ag_ohler/dharnet_m/Mitochondrialribo/pipeline/input/METTL8-ko1-rep3/METTL8-ko1-rep3.fastq.gz
+METTL8-ko2-rep1,/fast/work/groups/ag_ohler/dharnet_m/Mitochondrialribo/pipeline/input/METTL8-ko2-rep1/METTL8-ko2-rep1.fastq.gz
+METTL8-ko3-rep1,/fast/work/groups/ag_ohler/dharnet_m/Mitochondrialribo/pipeline/input/METTL8-ko3-rep1/METTL8-ko3-rep1.fastq.gz
+METTL8-ko4-rep1,/fast/work/groups/ag_ohler/dharnet_m/Mitochondrialribo/pipeline/input/METTL8-ko4-rep1/METTL8-ko4-rep1.fastq.gz
+WT-rep1,/fast/work/groups/ag_ohler/dharnet_m/Mitochondrialribo/pipeline/input/WT-rep1/WT-rep1.fastq.gz
+WT-rep2,/fast/work/groups/ag_ohler/dharnet_m/Mitochondrialribo/pipeline/input/WT-rep2/WT-rep2.fastq.gz
+WT-rep3,/fast/work/groups/ag_ohler/dharnet_m/Mitochondrialribo/pipeline/input/WT-rep3/WT-rep3.fastq.gz

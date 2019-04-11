@@ -1,0 +1,753 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"TRE",
+				"TRUE"
+			],
+			[
+				"param",
+				"parameter"
+			],
+			[
+				"parse",
+				"parse_stan_pars"
+			],
+			[
+				"ribo",
+				"riboarray"
+			],
+			[
+				"Length",
+				"length"
+			],
+			[
+				"allstanfi",
+				"allstanfits"
+			],
+			[
+				"length",
+				"lengthnorm"
+			],
+			[
+				"gna",
+				"gnamei"
+			],
+			[
+				"gene_",
+				"gene_ind"
+			],
+			[
+				"pred",
+				"-preddf"
+			],
+			[
+				"show",
+				"showWarnings"
+			],
+			[
+				"predicted_si",
+				"predicted_signal_spline_3"
+			],
+			[
+				"genes",
+				"genes2fit"
+			],
+			[
+				"allmyor",
+				"allmyorfob"
+			],
+			[
+				"take_f",
+				"take_Fvals_spect"
+			],
+			[
+				"g",
+				"gcalcli"
+			],
+			[
+				"orf",
+				"orfob"
+			],
+			[
+				"e13",
+				"e13ribo"
+			],
+			[
+				"pept",
+				"peptide"
+			],
+			[
+				"igene",
+				"igeneind"
+			],
+			[
+				"ms_p",
+				"ms_params"
+			],
+			[
+				"sdplot",
+				"sdplotdftrans"
+			],
+			[
+				"free",
+				"freeest_df"
+			],
+			[
+				"exprda",
+				"exprdata"
+			],
+			[
+				"constr",
+				"constr_fit"
+			],
+			[
+				"n_",
+				"nLL_model_plot"
+			],
+			[
+				"prot",
+				"prot0"
+			],
+			[
+				"expr",
+				"expr_array"
+			],
+			[
+				"with",
+				"with_vectargs"
+			],
+			[
+				"nLL_",
+				"nLL_model"
+			],
+			[
+				"model_de",
+				"nLL_model_deg_sep"
+			],
+			[
+				"nLL_deg",
+				"nLL_model_deg_plot"
+			],
+			[
+				"get_",
+				"get_l2_ms_params"
+			],
+			[
+				"ms_para",
+				"get_l2_ms_params"
+			],
+			[
+				"nLL_model",
+				"nLL_model_deg"
+			],
+			[
+				"mod",
+				"modelling"
+			],
+			[
+				"pdf",
+				"pdfexpr"
+			],
+			[
+				"stop",
+				"stopifnot"
+			],
+			[
+				"exprdata",
+				"exprdatareshape"
+			],
+			[
+				"estimate_",
+				"estimate_rTE"
+			],
+			[
+				"glu",
+				"glu_noglia_engenes"
+			],
+			[
+				"enriched",
+				"enriched.in"
+			],
+			[
+				"gene_name",
+				"gene_name_i"
+			],
+			[
+				"gene",
+				"gene_namei"
+			],
+			[
+				"old_",
+				"old_rTE"
+			],
+			[
+				"ri",
+				"ribo"
+			],
+			[
+				"start",
+				"startpars"
+			],
+			[
+				"raw",
+				"rawcounts"
+			],
+			[
+				"data",
+				"datacol"
+			],
+			[
+				"cds",
+				"cdsmap_df"
+			],
+			[
+				"mappa",
+				"mappability_"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "/Users/dharnet/bih_cluster/fast/work/groups/ag_ohler/dharnet_m/Mitochondrialribo/mitoribo.Rmd",
+			"settings":
+			{
+				"buffer_size": 185,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/fast/work/groups/ag_ohler/dharnet_m/Mitochondrialribo/src/pipeline.mitoribo.smk",
+			"settings":
+			{
+				"buffer_size": 14738,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "# the qc step at the moment assumes that the data is single ended\n#\nshell.executable(\"bash\")\nshell.prefix(\"set -e  pipefail;\")\n\ndef is_nonempty(file):\n  assert os.stat(file).st_size\ndef is_over_size(file,n):\n  assert os.stat(file).st_size > n\n\n# user set parameter\nTMPDIR = '$TMPDIR'\nSCRIPTDIR = '../git/rna_seq/scripts'\n\n# #reference genome\nREF_orig = '../../genomes/hg19.fa'\n\n\n#things this needs - all sorts of shit for the R scripts....\n#samtools, bed tools, a bunhc of ucsc tools, picard, \n\n# import os\n# def filebase(file): return()\n\n\n# # used by star\n# STARINDEX = \"/fast/projects/cubit/0.12.0/static_data/precomputed/STAR/2.4.1d/GENCODE/M12/GRCm38/p5.chr_scaff/50/\"\n# # used by \n# GTF_orig = '/fast/projects/cubit/0.12.0/static_data/annotation/GENCODE/M12/GRCm38/gencode.vM12.annotation.gtf'\n# GTF_cdsfilt = 'static_local/gencode.vM12.annotation_cdsfilt.gtf'\n# CDSGTF = 'static_local/gencode.vM12.annotation.cds.gtf'\n\n# # used by infer_experiment\n# BED = 'static_local/gencode.vM12.annotation.bed'\n# GFF = '/fast/projects/cubit/0.12.0/static_data/annotation/GENCODE/M12/GRCm38/gencode.vM12.annotation.gff3'\n\n#for f in $(echo star/data/*/!(*star_transc*).bam ) ; do samtools view $f  | head -n 300 | cut -d$'\\t' -f 6 | awk -v f=\"$f\" '{print $0,f}'  ; done  > cigar_sample.txt\n\nREF = 'my_'+os.path.splitext(os.path.split(REF_orig)[1])[0]+'.fa'\n\n# used by infer_experiment\nGTF_orig = '../annotation/gencode.v24lift37.annotation.gtf'\nGFF_orig = '../annotation/gencode.v24lift37.annotation.gff3'\n\nANNOBASE = 'my_'+os.path.splitext(os.path.split(GTF_orig)[1])[0]\n\nGFF = ANNOBASE+'.gff3'\n\nBED = ANNOBASE+'.bed'\n\n# used by \nGTF = ANNOBASE+'.gtf'\nCDSGTF = ANNOBASE+'.cdsfilt.gtf'\n#used to make indices\nRNAFASTA = ANNOBASE+'.transcript.fa'\nCDSFASTA = ANNOBASE+'.cds.fa'\n\n# need to think on this.... we start with a genome and a gff3 file. We add the extra transcript to our gff3 file, (optionally eliminating all others) \n#then we create the transcript fasta file from our gff3 file, and the gtf file. Then, we use these to make salmon, and rsem/star indices\n\n# used by qc\nSeQC_GTF = ANNOBASE+'_SEQC_GTF'+'.gtf'\nSeQC_REF = REF\n\nSAMPLELINES = [line.strip().split(',') for line in open(\"sample_parameter.csv\").readlines()]\n\n#switch for testmode\nif(config.get('test',0)): \n  print('\\n\\n--------testmode on -------------\\n\\n')\n  SAMPLELINES = SAMPLELINES[0:2]  \n  origSAMPLE = [ entry[SAMPLELINES[0].index('sample_id')] for entry in SAMPLELINES[1:]]\n  SAMPLES = ['test']\n\nelse:\n  SAMPLES = [ entry[SAMPLELINES[0].index('sample_id')] for entry in SAMPLELINES[1:]]\n\n\n\n#get our info as dictionaries\ndef tab_to_dict(SAMPLELINES,valcol):\n  valind = SAMPLELINES[0].index(valcol)\n  vals   = [ entry[valind] for entry in SAMPLELINES[1:]]\n  return dict(zip(SAMPLES,vals))\n\n#sample - info dictionaries\nLIBRARY_DICT          = tab_to_dict(SAMPLELINES,'library_layout')\nREAD_PATTERN_DICT     = tab_to_dict(SAMPLELINES,'read_pattern')\nPROTOCOL_DICT         = tab_to_dict(SAMPLELINES, 'protocol')\nFRAG_LENGTH_MEAN_DICT = tab_to_dict(SAMPLELINES, 'fragment_length_mean')\nFRAG_LENGTH_SD_DICT   = tab_to_dict(SAMPLELINES, 'fragment_length_sd')\n\nASSAY_DICT            = tab_to_dict(SAMPLELINES, 'assay')\nGTF_DICT              = {k: CDSGTF if 'ribo' in v else GTF for k, v in ASSAY_DICT.items()}\n\n#for f in $(echo input/*); do for q in $( echo ${f}/* ); do echo $f $q; done; done | sed 's/input\\///' > pipeline/sample_file.txt\nSAMPLEFASTQLINES = [line.strip().split('\\t') for line in open(\"sample_file.txt\").readlines()]\nFASTQS = [l[1] for l in SAMPLEFASTQLINES]\nFASTQSAMPLES = [l[0] for l in SAMPLEFASTQLINES]\nFASTQSAMPLEDICT = dict(zip(FASTQS,FASTQSAMPLES))\nSAMPLEFASTQDICT = {v:[i for i in FASTQSAMPLEDICT.keys() if FASTQSAMPLEDICT[i] == v ] for k,v in FASTQSAMPLEDICT.items()}\n\n\nassert set(FASTQSAMPLES) == set(SAMPLES)\n\n#the group dict is structured differently, returns a list of samples\nGROUP_DICT = tab_to_dict(SAMPLELINES,'group')\nGROUP_SAMPLES = {}\n\nfor k, v in GROUP_DICT.items():\n    GROUP_SAMPLES[v] = GROUP_SAMPLES.get(v, [])\n    GROUP_SAMPLES[v].append(k)\n\nGROUPS = list(GROUP_SAMPLES.keys())\n\n#information on the strand of stuff\nstrands = ['pos','neg']\nSTRANDSYMS={strands[0]:'+',strands[1]:'-'}\n\n#extensions for transcript and chromosome bigwigs\nistransvals = ['.transcript','.chr']\n#extensions used by STAR to denot the transcript/genomic bam\nBEXTS={istransvals[0]:'.star_transcript',istransvals[1]:''}\n\n\n# print('Samples are: ',SAMPLES)\n# print('Groups are: ',GROUPS)\n\n\nRIBO_TOTAL_DICT = dict(zip(\n  list(filter(lambda x: 'ribo' in x,SAMPLES)),\n  list(filter(lambda x: 'total' in x,SAMPLES))\n))\n\nGENEREGIONS = ['gene','cds','fputrs','tputrs']\n# generegions = ['gene','cds','fputrs','tputrs','cds_tiles','fputr_tiles','tputr_tiles']\n\n# TRNAs = ['gencode.vM12.tRNAs.gtf.gz']\nTRNAs = ['tRNAs']\n\n# READRANGES = ['25_30','1_26','27_28','29_100','1_300']\nREADRANGES = ['25_31','1_300']\n# READRANGENUM = [[25,30],[1,26],[27,28],[29,100],[1,300]]\nREADRANGENUM = [[25,31],[1,300]]\nREADRANGEDICT = dict(zip(READRANGES,READRANGENUM))\n\n\nassert set(FASTQSAMPLES) == set(SAMPLES)\n\n\nribosamples=list(filter(lambda s: ASSAY_DICT[s] == 'ribo',SAMPLES))\ntotalsamples=list(filter(lambda s: ASSAY_DICT[s] == 'total',SAMPLES))\nriboms_total_file='/fast/work/groups/cubi/projects/2017-10-10_cortexomics/gdrive/cortexomics_ms_total/325_new_2_all_log2_LFQ_n7464.txt'\nms_spec_file='/fast/work/groups/cubi/projects/2017-10-10_cortexomics/gdrive/cortexomics_ms_cyt+80+Poly/proteinGroups.txt'\n\nribofastqs=list(filter(lambda fq: FASTQSAMPLEDICT[fq] in ribosamples,FASTQS))\ntotalfastqs=list(filter(lambda fq: FASTQSAMPLEDICT[fq] == totalsamples,FASTQS))\n\n\ngroupnames = ['OD5P','ONVC','OMM']\nsamplegroups = {\n  'OD5P': list(filter(lambda s: 'OD5P' in s,ribosamples)),\n  'ONVC': list(filter(lambda s: 'ONVC' in s,ribosamples)),\n  'OMM': list(filter(lambda s: 'OMM' in s,ribosamples)),\n  'T1014A': list(filter(lambda s: 'T1014A' in s,ribosamples)),\n  'T1015A': list(filter(lambda s: 'T1015A' in s,ribosamples)),\n  'T1185B': list(filter(lambda s: 'T1185B' in s,ribosamples)),\n}\n\nsamplegroups.update(dict(zip(SAMPLES,[[s] for s in SAMPLES] )))\n# print(samplegroups)\n\n\n# print(SAMPLES)\n\nrule all:\n  input:\n    FASTQS,\n    expand(\"processed_reads/{sample}/.done\", sample = SAMPLES),\n    # expand(\"cutsequences/{sample}/cutseqs.txt.gz\", sample = SAMPLES),\n    # GTF,\n    # CDSFASTA,\n    #expand(\"rsem/data/{sample}/.done\", sample = SAMPLES),\n    # expand(\"fastqc/data/{sample}/.done\", sample = SAMPLES),\n    #    \"fastqc/summary/fastqc_summary.tsv\",\n    expand(\"star/data/{sample}/.done\", sample = SAMPLES),\n    #expand(\"infer_experiment/data/{sample}/.done\", sample = SAMPLES),\n    expand(\"qc/data/{sample}/.done\", sample = SAMPLES),\n    (\"multiqc/multiqc_report.html\"),\n    # expand(\"dupradar/data/{sample}/.done\", sample = SAMPLES),\n    # expand(\"htseq/data/{sample}/.done\", sample = SAMPLES),\n    expand('feature_counts_readrange/data/{sample}/{generegions}/{readrange}/.done', sample=RIBO_TOTAL_DICT.keys(), generegions=GENEREGIONS+TRNAs, readrange=READRANGES),\n    expand(\"feature_counts/data/{sample}/feature_counts\", sample = SAMPLES),\n    expand(\"feature_counts/all_feature_counts\"),\n    # expand(\"feature_counts/data/{sample}/{generegions}/{readrange}/.done\", sample = SAMPLES, generegions = generegions+TRNAs, readrange = READRANGES),\n    # expand(\"kallisto/data/{sample}/.done\", sample = SAMPLES),\n    # expand(\"bigwigs/{group}/{strand}/{istrans}.done\",group = SAMPLES,strand=strands,istrans=istransvals),\n    # expand(\"mergedbigwigs/{group}/{strand}/{istrans}.done\",group = GROUPS,strand=strands,istrans=istransvals),\n    # expand(\"ribotaper/{sample}/.done\",sample=list(RIBO_TOTAL_DICT.keys())),\n    # expand('junctioncounts/{sample}/{sample}.junctioncounts.tsv',sample=ribosamples),\n    expand(\"SaTAnn/{sample}/.done\", sample = ribosamples+groupnames),\n    expand('riboqc/reports/{sample}/riboqcreport.html', sample = ribosamples+groupnames),\n    expand('groupedsatan/{group}.fasta', group = groupnames),\n    expand('groupedsatan/{group}.variantmod.fasta', group = groupnames),\n\n# expand(\"ribotapermetaplots/{sample}/.done\",sample=list(RIBO_TOTAL_DICT.keys())),\n    \n\nMINREADLENGTH=20\nMAXREADLENGTH=300\nQUALLIM=20\nCUTADAPTBIN=\"~/work/bin/cutadapt\"\nREMOVE8NBIN=\"~/work/bin/remove8N_twoarg.pl\"\n\n\n###OOOOOOkay. GFF read does some weird shit including excluding 'transcript' lines.....\nrule gffread:\n  input: REF,GTF_orig\n  output: GTF,CDSGTF,RNAFASTA,CDSFASTA,BED\n  run:\n    shell(r\"\"\" \n      # set -x\n      #with filtering output all sequences\n      cat {GTF_orig} \\\n      | sed -r  's/((transcript_id|gene_id|protein_id|ID|Parent|exon_id|havana_gene|havana_transcript)\\W+\\w+)\\.[0-9]+/\\1/g' \\\n      > {GTF}\n\n      cat {GFF_orig} \\\n      | sed -r  's/((transcript_id|gene_id|protein_id|ID|Parent|exon_id|havana_gene|havana_transcript)\\W+\\w+)\\.[0-9]+/\\1/g' \\\n      > {GFF}\n\n\n      #needs gff - output exon sequences\n      cat {GFF_orig} |  grep -P -e'\\texon\\t|^\\#' | gffread - -F -E -g {REF} -W -w {RNAFASTA} -o /dev/null\n\n      #Note we are now minus the transcript and exon entries for these\n      #now make GTF\n\n      #| grep -P -e'\\tCDS\\t|^\\#' \n     #with filtering, output the coding sequences filteirng out the ones that aren't in frame, have a stop codon, are pseudogenes etc.\n      \n      cat {GFF_orig}  \\\n        | sed -r  's/((transcript_id|gene_id|protein_id|ID=\\w+|Parent)\\W+\\w+)\\.[0-9]+/\\1/g' \\\n        | gffread - -C -V -J --no-pseudo  -F -E -g {REF} \\\n        -W -w {ANNOBASE}.coding.transcript.fa -x {CDSFASTA} -y {ANNOBASE}.protein.fa -T \\\n        -o /dev/stdout \\\n        | awk -v FS=\"\\t\" -v OFS=\"\\t\" '{{if($3==\"CDS\"){{$3=\"exon\";print $0}}}}' \\\n         > {CDSGTF}\n\n      #now make bed\n      cat {GTF_orig} | awk '{{print $1,$4,$5,\"name\",$6,$7}}' > {BED}\n      \"\"\")\n\n \nrule make_utrs:\n  input: GTF=GTF_orig\n  output: fputrs='fputrs.gtf',tputrs='tputrs.gtf'\n  # script: 'make_utrfiles.R'\n  run:\n    shell(r\"\"\"\n      set -ex\n      #with filtering output all sequences\n      cat {input.GTF}  \\\n      | awk -v OFS=\"\\t\"  '{{if($3==\"five_prime_UTR\"){{         ;print $0}}}}' \\\n      | sed -r  's/((transcript_id|gene_id|protein_id|ID=\\w+|Parent)\\W+\\w+)\\.[0-9]+/\\1/g' \\\n      > {output.fputrs} \n\n      cat {input.GTF} \\\n      | awk -v OFS=\"\\t\"  '{{if($3==\"three_prime_UTR\"){{         ;print $0}}}}' \\\n      | sed -r  's/((transcript_id|gene_id|protein_id|ID=\\w+|Parent)\\W+\\w+)\\.[0-9]+/\\1/g' \\\n      > {output.tputrs}\n\n     \n      \"\"\") \n\nrule fastqc:\n     input: 'processed_reads/{sample}/.done'\n     output: touch('fastqc/data/{sample}/.done')\n     threads: 4\n     log:'fastqc/reports/{sample}/fastqc.log'\n     params:\n      reads = lambda wc: [fq.replace('input/','processed_reads/') for fq in SAMPLEFASTQDICT[wc['sample']]],\n      outdir = lambda wc: 'fastqc/data/'+wc.sample+'/'\n     shell: '''\n          OUTDIR=$(dirname {output[0]})\n          mkdir -p {params.outdir}\n          wait $(for i in {params.reads}; do $( fastqc -o {params.outdir} $i ) & done) \n        '''\n\nrule collect_fastqc:\n     input:\n          all_results = expand(\"fastqc/data/{sample}/.done\", sample=SAMPLES)\n     output:\n          result='fastqc/summary/fastqc_summary.tsv',\n          log='fastqc/summary/fastqc_summary.log'\n     shell:\n          r\"\"\"\n          set -e\n          mkdir -p $(dirname {output.result}) \n          {SCRIPTDIR}/collect_fastqc_results.sh -i fastqc/ \\\n          > {output.result} \\\n          2> {output.log} \n          \"\"\"\n\n\n    \nrule star_index:\n  input: alljuncfile='junctions/all.tsv',REF=REF\n  output: touch('starindex/.done')\n  threads: 8\n  run:\n    shell(r\"\"\"\n      STAR \\\n      --runThreadN {threads} \\\n      --runMode genomeGenerate \\\n      --genomeDir $(dirname {output}) \\\n      --sjdbFileChrStartEnd {input.alljuncfile} \\\n      --genomeFastaFiles {input.REF}\n      \"\"\")  \n\n\ndef get_fastqops(inputdir,read_pattern,lstring='<( zcat ',rstring=')'):\n  import glob as glob\n  #get our input files, in either paired end or single end form\n  assert '-f' in read_pattern\n  fastqops = read_pattern.split('-')[1].replace('f ','',1).strip()\n  fastqops = glob.glob(inputdir+'/'+fastqops)\n  fastqops.sort()\n  assert fastqops\n  assert all([os.stat(fastq).st_size!=0 for fastq in fastqops])\n  fastqops = ' '.join(fastqops)\n  \n  fastqops = lstring+fastqops+')'\n\n  if '-q' in read_pattern:\n    fastqops2 = read_pattern.split('-')[2].replace('q ','',1).strip()\n    fastqops2 = glob.glob(inputdir+'/'+fastqops2)\n    assert all([os.stat(fastq).st_size!=0 for fastq in fastqops2])\n    fastqops2.sort()\n    fastqops2 = ' '.join(fastqops2)\n    fastqops2 = lstring+fastqops2+')'\n    fastqops += ' ' + fastqops2\n  return(fastqops)\n\nrule star:\n     input:\n          fastqs='processed_reads/{sample}/.done',\n          STARINDEX='starindex/.done',\n          bowtie_index='bowtie_index/.done',\n     output:\n          done = touch('star/data/{sample,[^/]+}/.done')\n     threads: 8\n     run:\n          input.STARINDEX=input.STARINDEX.replace('.done','')\n          markdup = '' if ASSAY_DICT[wildcards['sample']] == 'ribo' else '-m'\n          platform = 'NotSpecified'\n          inputdir = os.path.dirname(input['fastqs'])\n          outputdir = os.path.dirname(output[0])\n          read_pattern = READ_PATTERN_DICT[wildcards['sample']]\n          fastqops = get_fastqops(inputdir,read_pattern,lstring='<( zcat ',rstring=')')\n          repdir = outputdir.replace('data','reports')\n          tophatindex =input['bowtie_index'].replace('.done','')\n          \n          halfthreads = threads/2\n          sortmem = str(int(5000/halfthreads))+'M'\n\n          remap = '1' if ASSAY_DICT[wildcards['sample']] == 'ribo' else ''\n\n          sample = wildcards['sample']\n          shell(r\"\"\"\n            set -x\n         MY_TMP_DIR=$(mktemp -d)\n        trap \"set -x; rm -rf ${{MY_TMP_DIR}}\" EXIT KILL TERM INT HUP\n\n         mkdir -p $MY_TMP_DIR\n        mkdir -p $MY_TMP_DIR/star\n        mkdir -p $MY_TMP_DIR/tophat2\n\n        #--outSAMmultNmax 20 --winAnchorMultimapNmax 50 --outFilterMultimapNmax 20 \\\n\n        STAR \\\n              --genomeDir {input.STARINDEX} \\\n              --runThreadN {threads} \\\n              --outSAMunmapped Within \\\n              --outFilterType BySJout \\\n              --outMultimapperOrder Random \\\n              --alignSJoverhangMin 8 \\\n              --alignSJDBoverhangMin 1 \\\n              --outFilterMismatchNmax 999 \\\n              --outFilterMismatchNoverLmax 0.04 \\\n              --alignIntronMin 20 \\\n              --alignIntronMax 1000000 \\\n              --alignMatesGapMax 1000000 \\\n              --genomeLoad NoSharedMemory \\\n              --quantMode GeneCounts \\\n              --outSAMattributes NH HI AS NM MD \\\n              --outSAMtype BAM  Unsorted\\\n              --outSAMattrRGline \\\"ID:{sample}\\\" \\\"SM:{sample}\\\" \\\"PL:{platform}\\\" \\\n              --outFileNamePrefix ${{MY_TMP_DIR}}/star/ \\\n              --outReadsUnmapped Fastx \\\n              --readFilesIn {fastqops}\n          \n\n          iftophat=\n          if [ {remap} -eq 1 ] && [ ${{MY_TMP_DIR}}/star/Unmapped.out.mate* ]; then\n            iftophat=true\n\n            tophat2 \\\n                -p {threads} \\\n                -z0 \\\n                -g 100 \\\n                --output-dir ${{MY_TMP_DIR}}/tophat2 \\\n                --library-type fr-unstranded \\\n                --no-coverage-search \\\n                --transcriptome-index {tophatindex}/transcriptome \\\n                {tophatindex}/ref \\\n                ${{MY_TMP_DIR}}/star/Unmapped.out.mate*\n\n            umapped=${{MY_TMP_DIR}}/tophat2/unmapped.bam\n            tmapped=\n            \n            samtools merge \\\n              -@ {threads}  -f \\\n             ${{MY_TMP_DIR}}/all.bam \\\n             ${{MY_TMP_DIR}}/star/Aligned.out.bam \\\n             ${{MY_TMP_DIR}}/tophat2/*.bam\n          else\n            cp ${{MY_TMP_DIR}}/star/Aligned.out.bam ${{MY_TMP_DIR}}/all.bam\n          fi\n          \n         samtools sort \\\n          -@ {halfthreads}\\\n          -m {sortmem} \\\n          -T ${{MY_TMP_DIR}} \\\n          -o {outputdir}/{sample}.bam \\\n          ${{MY_TMP_DIR}}/all.bam\n      \n        samtools index {outputdir}/{sample}.bam \n\n        mkdir -p {repdir}\n        samtools stats {outputdir}/{sample}.bam > {repdir}/{sample}.bamstats.txt\n        samtools flagstat {outputdir}/{sample}.bam > {repdir}/{sample}.flagstat.log\n        samtools idxstats {outputdir}/{sample}.bam > {repdir}/{sample}.idxstats.log\n        \n        cp  ${{MY_TMP_DIR}}/star/ReadsPerGene.out.tab {outputdir}/ReadsPerGene.out.tab\n        cp  ${{MY_TMP_DIR}}/star/SJ.out.tab {outputdir}/\n        cp  ${{MY_TMP_DIR}}/star/{{Log.final.out,Log.out}} {repdir}/\n        if [ $iftophat ] ;then cp ${{MY_TMP_DIR}}/tophat2/align_summary.txt {repdir} ;fi\n\n          \"\"\")\n          \nrule junctioncounts:\n  input: \n    uniquejuncrds = 'junctions/uniqueintrons.rds',\n    star = 'star/data/{sample}/.done',\n  output:\n    'junctioncounts/{sample}/{sample}.junctioncounts.tsv'\n  run:\n    bamfile = 'star/data/'+wildcards['sample']+'/'+wildcards['sample']+'.bam'  \n    shell(r'''\n      Rscript ../src/junctioncounts.R {input[0]} {bamfile} {output}\n        ''')\n         \n\n\n# TESTSECTION=\"1:1-1260071\"\n\n# rule preprocess_bam:\n#     input: get_bam\n#     output: \"work/{sample}/{sample}.preprocess.bam\"\n#     shell: r\"\"\"\n#     samtools view -bh {input} {TESTSECTION} > {output}\n#     samtools index {output}\n#     \"\"\"\n\n\n# rule bwa_mem:\n#      input:\n#           'processed_reads/{sample}/{sample}.fastq.gz'\n#      output:\n#           done = touch('star/data/{sample}/.done')\n#      threads: 8\n#      run:\n#           read_pattern = READ_PATTERN_DICT[wildcards['sample']]\n#           shell(r\"\"\"\n#           set -e\n#           mkdir -p star/reports/{wildcards.sample}\n#           {SCRIPTDIR}/run_my_star.sh -m -@ {threads} -i {input} {read_pattern} -o $(dirname {output}) \\\n#           -r star/reports/{wildcards.sample} -t {TMPDIR} -l NoSharedMemory -x {STARINDEX} \n#           \"\"\")\n\ndef get_trackfile(sample,strand,ext):\n  return 'bigwigs/'+sample+'/'+strand+'/'+sample+'.'+strand+ext\n\n#TODO strand is a problem here\nrule bigwigs:\n     input: \n          \"star/data/{sample}/.done\"\n     output:\n          done = touch(\"bigwigs/{sample}/{strand}/{istrans}.done\")\n     threads: 1\n     run:\n        bedgraph = get_trackfile(wildcards.sample,wildcards.strand,wildcards.istrans+'.bg')\n        bw = get_trackfile(wildcards.sample,wildcards.strand,wildcards.istrans+'.bw')\n        bext = BEXTS[wildcards.istrans]\n        bam = 'star/data/'+wildcards.sample+'/'+wildcards.sample+bext+'.bam'        \n        chromsizes = 'bigwigs/'+wildcards.sample+'/'+wildcards.istrans+'.chrsizes.txt'\n        strandsym = STRANDSYMS[wildcards.strand]\n        #turns out reversing the y axis breaks bigwig merge....\n        # revyaxis = -1 if strandsym is '-' else 1\n        revyaxis = 1\n\n        shell(r\"\"\"\n        set -e\n        mkdir -p bigwigs/{wildcards.sample}/{wildcards.strand}\n       \n        # count=\"$(cat star/reports/{wildcards.sample}/{wildcards.sample}.bam.bamstats.txt | \\\n        #  grep -Po \"reads mapped:\\s+\\d+\" | \\\n        #  grep -Po \"\\d+$\" | awk '{{print {revyaxis}*1000000/$0}}' \n        #  )\"\n        count=1\n        samtools view -H {bam} | grep \"SQ\" | sed -r 's/^@SQ\\s+SN://' | sed -r \"s/\\s+LN:/\\t/\" > {chromsizes} \n\n        bedtools genomecov -5 -ibam {bam} -bg -strand {strandsym} -scale $count > {bedgraph}\n        bedSort {bedgraph} {bedgraph}\n        bedGraphToBigWig {bedgraph} {chromsizes} {bw}\n       \n\n        \"\"\")\n        is_over_size(output[0],1e6)\n\n\ndef getGroupBigWigs(wildcards):\n    strand = wildcards['strand']\n    samples = GROUP_SAMPLES[wildcards['group']]\n    return [get_trackfile(s,strand,wildcards.istrans+'.bw') for s in samples ]\n\n\ndef getGroupBigWigDone(wildcards):\n    strand = wildcards['strand']\n    samples = GROUP_SAMPLES[wildcards['group']]\n    return ['bigwigs/'+s+'/'+strand+'/'+wildcards.istrans+'.done' for s in samples ]\n\n\nrule mergedbigwigs:\n     input: getGroupBigWigDone\n     output:\n          done = touch('mergedbigwigs/{group}/{strand}/{istrans}.done')\n     threads: 1\n     run:\n        chromsizes = 'bigwigs/'+GROUP_SAMPLES[wildcards.group][0]+'/'+wildcards.istrans+'.chrsizes.txt' \n        bigwigs = getGroupBigWigs(wildcards)\n        libnum = len(bigwigs)\n        mergedfilebase=\"mergedbigwigs/\"+wildcards.group+\"/\"+wildcards.strand+\"/\"+wildcards.group+\".\"+wildcards.strand+wildcards.istrans\n\n\n        shell(r\"\"\"\n        set -xe\n        mkdir -p mergedbigwigs/{wildcards.group}/{wildcards.strand}/\n        \n        bigWigMerge {bigwigs} /dev/stdout | awk 'BEGIN{{OFS=\"\\t\"}}{{$4 = $4 /{libnum} ; print $0 }}' > {mergedfilebase}.bg \n        \n        bedSort {mergedfilebase}.bg {mergedfilebase}.bg \n\n        bedGraphToBigWig \\\n          {mergedfilebase}.bg \\\n          {chromsizes} \\\n          {mergedfilebase}.bw\n\n        rm {mergedfilebase}.bg\n        \"\"\")\n\nrule infer_experiment:\n     input:\n          'star/data/{sample}/.done'\n     output:\n          done = touch('infer_experiment/data/{sample}/.done')\n     shell:\n          (r\"\"\"\n          set -e\n          mkdir -p infer_experiment/data/{wildcards.sample}\n          \n          infer_experiment.py -r {BED} \\\n          -i star/data/{wildcards.sample}/{wildcards.sample}.bam \\\n          -q 255 > infer_experiment/data/{wildcards.sample}/{wildcards.sample}.strand_stat.txt\n          \"\"\")\n     \ntranscript_gene_map = 'transcript_gene_map.tsv'\ngene_transcript_map = 'gene_transcript_map.tsv'\n\nrule make_gene_transcript_map:\n  input: GTF\n  output: gene_transcript_map,transcript_gene_map\n  run:\n    shell(r\"\"\"\n    cat {input} \\\n      | grep -Pe'\\ttranscript\\t'  \\\n      | perl -lane '/transcript_id\\W+([\\w\\.]+)/;$t=$1; $g=/gene_id\\W+([\\w\\.]+)/;$g=$1;print($g,\"\\t\",$t)' \\\n      | sort | uniq \\\n      > {gene_transcript_map}\n\n    cat {gene_transcript_map} \\\n      | awk '{{print $2,$1}}' > {transcript_gene_map}\n    \"\"\")\n    is_nonempty(gene_transcript_map)\n\n\nrrna_intervals = 'qc/picard_rrna_intervals.txt'\nrefflat = 'qc/'+ANNOBASE+'.refflat'\n\nrule make_picard_files:\n  input: GTF,'star/data/'+SAMPLES[0]+'/.done'\n  output: intervals=rrna_intervals,refflat=refflat\n  conda: '../envs/picard'\n  shell:r\"\"\"\n         samtools view -H star/data/{SAMPLES[0]}/{SAMPLES[0]}.bam > {output.intervals}\n        \n         grep -Pe 'gene_type..rRNA.' {input[0]} \\\n         | awk '$3 ==\"transcript\"' \\\n         | cut -f 1,4,5,7,9 \\\n         | perl -lane ' /transcript_id \"([^\"]+)\"/ or die \"notranscript_id on $.\"; print join \"\\t\", (@F[0,1,2,3], $1) ' \\\n         | sort -k1V -k2n -k3n  - >> {output.intervals}\n        \n        gtfToGenePred -geneNameAsName2 {GTF} {GTF}.genepred\n        cat {GTF}.genepred | awk -vOFS=\"\\t\" '{{print $1,$0}}' > {output.refflat}\n\n  \"\"\"\n\n\nrule qc:\n     input:\n          fastqc='fastqc/data/{sample}/.done',\n          star='star/data/{sample}/.done',\n          refflat = refflat,\n          rrna_intervals = rrna_intervals,\n     output:\n          done=touch('qc/data/{sample}/.done'),\n     conda: '../envs/picard'\n     resources:\n     params:\n        singleendflag = lambda wc: ' -singeEnd ' if LIBRARY_DICT[wc['sample']] == 'PAIRED' else '',\n        bamfile = lambda wc:'star/data/'+wc['sample']+'/'+wc['sample']+'.bam' \n    \n     shell: \"\"\"\n          set -e\n          set -xv\n          \n        OUTDIR=$(dirname {output.done})\n        mkdir -p qc/reports/{wildcards.sample}/\n\n        {SCRIPTDIR}/read_statistic_report.sh \\\n         -l star/reports/{wildcards.sample}/Log.final.out  \\\n         -g $(dirname {input.fastqc}) \\\n         -o ${{OUTDIR}}/read_alignment_report.tsv \\\n         &> qc/reports/{wildcards.sample}/{wildcards.sample}_qc.log \n\n         picard CollectRnaSeqMetrics -Xms4G \\\n          I={params.bamfile} \\\n          O=${{OUTDIR}}/{wildcards.sample}_picard_qc.txt \\\n          REF_FLAT={refflat} \\\n          STRAND=FIRST_READ_TRANSCRIPTION_STRAND \\\n          RIBOSOMAL_INTERVALS={rrna_intervals}\n        \n        picard CollectAlignmentSummaryMetrics \\\n          INPUT={params.bamfile} \\\n          OUTPUT=${{OUTDIR}}/{wildcards.sample}.picard.alignmentmetrics.txt \\\n          R={REF}\n\n      {SCRIPTDIR}/read_duplication.sh \\\n        -i {params.bamfile} \\\n        -o ${{OUTDIR}}/duplication/ \\\n        &> qc/reports/{wildcards.sample}/{wildcards.sample}_qc.log \n\n          \"\"\"\n     \n\n\nmultiqcscript = '~/work/Applications/MultiQC/scripts/multiqc'\n\nrule multiqc:\n  input:\n      expand(\"fastqc/data/{sample}/.done\", sample = SAMPLES),\n      expand(\"star/data/{sample}/.done\", sample = SAMPLES),\n      expand(\"qc/data/{sample}/.done\", sample = SAMPLES),\n      # expand(\"tophat2/data/{sample}/.done\", sample = SAMPLES),\n      [f.replace('input','filter_reads') for f in  ribofastqs],\n      expand(\"feature_counts/data/{sample}/feature_counts\", sample = SAMPLES),\n      'sample_file.txt'\n \n  output:\n    'multiqc/multiqc_report.html'\n  run:\n    reportsdirs = list(input)\n    reportsdirs=[s.replace('star/data','star/reports') for s in reportsdirs]\n    reportsdirs=[s.replace('tophat2/data','tophat2/reports') for s in reportsdirs]\n    reportsdirs=[os.path.dirname(s) for s in list(reportsdirs)]\n    shell(r\"\"\"\n      cat sample_file.txt | sed 's/.fastq.gz//g' | sed 's/\\t.*\\//\\t/g' \\\n      | awk -vOFS='\\t' 'BEGIN{{print \"fastqname\",\"samplename\"}}{{sumsamp[$1] = sumsamp[$1]+1;print $2,$1\"_fq\"sumsamp[$1]}}' \\\n      > multiqc/samplenames.txt\n\n      {multiqcscript} {reportsdirs} -fo $(dirname {output[0]}) -c multiqc_config.yaml --sample-names multiqc/samplenames.txt\n      \"\"\")\n\n#this is going to count reads in each library over 5'UTRS, CDS, and 3' UTRs\n\n\nrule readlenfilt:\n  input: 'star/data/{sample}/.done'\n  output:  'readlenfilt/data/{sample}/{readrange}/readlenfilt.bam'\n  run:\n    minreadlen,maxreadlen = READRANGEDICT[wildcards['readrange']]\n\n    readrangebam = output[0]\n    shell(r\"\"\"\n          set -ex\n          samtools view -h $(dirname {input})/{wildcards.sample}.bam \\\n           | awk '((length($10) >= {minreadlen})&&(length($10) <= {maxreadlen})) || $1 ~ /^@/' \\\n          | samtools view -S -b - > {readrangebam}\n            \n      \"\"\")\n\n\nrule feature_counts_readrange:\n     input:\n          GTF,CDSGTF,'tputrs.gtf','fputrs.gtf',\n          readrangefilt='readlenfilt/data/{sample}/{readrange}/readlenfilt.bam'\n     output:\n          done = touch('feature_counts_readrange/data/{sample,[^/]+}/{generegions}/{readrange}/feature_counts')\n     threads: 2\n     log: r\"\"\"feature_counts_readrange/reports/{sample}/{generegions}/{readrange}/feature_counts.log\"\"\"\n     run:\n          if (wildcards['generegions'] in ['gene','cds']):\n            GTF = GTF_DICT[wildcards['sample']]\n            groupcol = 'gene_id'\n          else:\n            GTF = wildcards['generegions']+'.gtf'\n            groupcol = 'transcript_id'\n          \n          protocol = PROTOCOL_DICT[wildcards['sample']]\n          if (protocol == 'no'):\n               protocol = 0\n          elif (protocol == 'yes'):\n               protocol = 1\n          elif (protocol == 'reverse'):\n               protocol = 2\n          else:\n               sys.exit('Protocol not known!')\n\n          library = LIBRARY_DICT[wildcards['sample']]\n\n          if (library == 'PAIRED'):\n               library = '-p'\n          else:\n               library = ''\n\n          countmultimappers = ' ' \n          \n          if (wildcards['generegions']=='tRNAs'):\n            featuretype = 'tRNA'\n            countmultimappers = '-M --fraction'\n          \n          elif  (wildcards['generegions']=='tputrs'):\n            featuretype = 'exon'\n          elif  (wildcards['generegions']=='fputrs'):\n            featuretype = 'exon'\n          else:\n            featuretype = 'exon'\n\n\n          sample = wildcards['sample']\n          generegions = wildcards['generegions']\n          readrange = wildcards['readrange']\n          rangebam = input['readrangefilt']\n          \n          shell(r\"\"\"\n          set -ex\n          mkdir -p feature_counts_readrange/data/{sample}/{generegions}/{readrange}/\n          mkdir -p feature_counts/reports/{wildcards.sample}/\n          featureCounts \\\n            -T {threads} \\\n            -t {featuretype} -g {groupcol} \\\n            -a {GTF} \\\n            -s {protocol} {library} {countmultimappers} \\\n            -o feature_counts_readrange/data/{sample}/{generegions}/{readrange}/feature_counts \\\n            {rangebam} \\\n             &> feature_counts/reports/{wildcards.sample}/{wildcards.sample}.feature_counts.log\n\n          \"\"\")\n\ndef get_readrange(wc):\n    if wc['sample'] in ribosamples:\n          selregion='cds'\n          selreadrange='25_31'\n    else:\n          selregion='cds'\n          selreadrange='1_300'\n    fcountfile = 'feature_counts_readrange/data/'+wc['sample']+'/'+selregion+'/'+selreadrange+'/feature_counts'\n    return   fcountfile\n\nrule feature_counts:\n     input:\n          get_readrange,\n          'star/data/{sample}/.done',GTF,CDSGTF,'tputrs.gtf','fputrs.gtf',\n     output:\n          'feature_counts/data/{sample,[^/]+}/feature_counts'\n     threads: 2\n     run:       \n        bamfile = 'star/data/'+wildcards['sample']+'/'+wildcards['sample']+'.bam' \n\n        shell(r\"\"\"\n\n          mkdir -p feature_counts/reports/{wildcards.sample}\n          mkdir -p feature_counts/data/{wildcards.sample}\n\n          head -n2 {input[0]} \\\n          | tail -n1 \\\n          | awk -v FS=\"\\t\" -v OFS=\"\\t\"  '{{$7= \"{bamfile}\";print $0}}' \\\n          >    feature_counts/data/{wildcards.sample}/feature_counts\n\n          tail -n+3 {input[0]} \\\n          >>   feature_counts/data/{wildcards.sample}/feature_counts\n          \"\"\")\n\n# #this is going to count reads in each library over 5'UTRS, CDS, and 3' UTRs\nrule aggregate_feature_counts:\n  input : expand(\"feature_counts/data/{sample}/feature_counts\", sample = SAMPLES),\n  output: 'feature_counts/all_feature_counts'\n  run:\n    fcountfiles = list(input)\n    shell(r\"\"\" \n\n       #( (sed '2q;d' {fcountfiles[0]} | cut -f1 && tail -n+3 {fcountfiles[0]}| sort -k1 | cut -f1) > {output})\n       tail -n+3 {fcountfiles[0]}| sort -k1 | cut -f1 > {output}\n       \n       #now for eahc fcount table, join it to the ids\n       for fcountfile in $(echo {fcountfiles}); do\n\n          tail -n+3 $fcountfile| sort -k1 | cut -f1,7 | join {output} - | sort -k1 > {output}tmp\n          mv {output}tmp {output}\n       \n       done\n\n      echo \"feature_id {SAMPLES}\" | cat - {output} > {output}tmp\n      mv {output}tmp {output}\n    \n      \"\"\")\n\nrule aggregate_junctioncounts:\n  input : expand(\"junctioncounts/{sample}/{sample}.junctioncounts.tsv\", sample = SAMPLES),\n  output: 'junctioncounts/all_junctioncounts.tsv'\n  run:\n    shell(r\"\"\" \n          echo {input}  | {{ read -a args; \\\n            cp ${{args[0]}} {output};  \\\n            for oth in ${{args[@]:1}} ;do \\\n              paste  {output}  <( cut -f2 $oth)  > {output}.tmp; \n              mv {output}.tmp {output} ; \n            done ;\n          }} ;\n      \"\"\")\n\nrule segment_periodicity:\n  input:\n    juncgtf = 'junctions/{junction}.gtf',\n    pluspsites = 'riboqc/data/{sample}/_P_sites_plus.bw',\n    negpsites = 'riboqc/data/{sample}/_P_sites_plus.bw',\n  output:\n    'junctionspec/ref_metadata.filt_REF.C3N-02289.filt_L1.tsv'\n  run:\n    shell(r\"\"\"\n    Rscript ../src/segment_periodicity.R\n\"\"\")\ntwobitfile=REF.replace('.fa','.twobit')\n\nsatan_annot_script =  '/fast/work/groups/ag_ohler/dharnet_m/satann_working/Annot_make_bioc_gtf.R'\nriboqc_script =  '/fast/work/groups/ag_ohler/dharnet_m/satann_working/analysis_qc_mod_jan2018_12.R'\n'my_hg19.twobit'\nrule make_riboqc_anno:\n  input : GTF\n  output: touch('riboqc/annot.done')\n  run:\n  \toutdir = output[0].replace('annot.done','')\n  \tshell(r\"\"\"\n  \t\tset -x \n    source activate faToTwoBit\n    faToTwoBit my_hg19.fa my_hg19.twobit\n    cat {GTF} | perl -lanpe ' s/GL(\\d+).1/chrUN_gl\\1/g' > matchchrs.{GTF}\n \t\n    source activate cortexomics\n\tgrep -ve 'GL00'  {GTF} > matchchrs.{GTF}\n      mkdir -p riboqc\n       R -e ' library(RiboseQC); prepare_annotation_files(\"{outdir}\",\"{twobitfile}\",\"matchchrs.{GTF}\",\"Homo.sapiens\",\"{ANNOBASE}\") '\n\n\"\"\")\n\nrule run_riboqc:\n  input : 'riboqc/annot.done','star/data/{sample}/.done',REF\n  output: touch('riboqc/data/{sample}/.done'),'riboqc/data/{sample}/_for_SaTAnn'\n  run:\n    annofile = input[0].replace('annot.done',ANNOBASE+'.mainchrs.gtf_Rannot')\n    bamfile = 'star/data/'+wildcards['sample']+'/'+wildcards['sample']+'.bam'\n    outname = output[0].replace('.done','')\n    report_file = 'riboqc/reports/'+wildcards['sample']+'/'+'riboqcreport.html'\n    shell(r\"\"\" \n        R -e ' library(RiboseQC);RiboseQC::RiboseQC_analysis(\"{annofile}\", bam=\"{bamfile}\",dest_names=\"{outname}\", report_file=\"{report_file}\")' \n    \"\"\")\n\n\nSaTAnn_script = '/fast/work/groups/ag_ohler/dharnet_m/satann_working/Satan_working_hg38_genc25_May8.R'\n\nrule make_chrnamefile:\n input: GTF\n output: 'chrnames.txt'\n shell:r\"\"\" cut -d$'\\t' -f1 {input} | uniq | sort | uniq | grep -v '#' > {input}\"\"\"\n\n# rule run_satann:\n#   input : 'riboqc/data/{sample}/.done'\n#   output: touch('SaTAnn/{sample}/.done')\n#   threads: 10\n#   run:\n#     shell(r\"\"\"\n#     mkdir -p $( dirname {output} )\n\n#     if [ ! -s riboqc/data/{wildcards.sample}/_for_SaTAnn ]; then\n#       touch $(dirname {output} )/cannot_run_no_psites\n#       exit\n#     fi\n\n  \n#       Rscript {SaTAnn_script} \\\n#         {REF} \\\n#         riboqc/{ANNOBASE}.annoout \\\n#         {threads} \\\n#         riboqc/data/{wildcards.sample}/_for_SaTAnn \\\n#         $(dirname {output})/SaTAnn\n\n#       \"\"\")\n    \nrule run_satann_group:\n  input :\n    lambda wc: \n      ['riboqc/data/'+s+'/.done' for s in samplegroups[wc['groupname']] ]\n  output: touch('SaTAnn/{groupname}/.done')\n  threads: 20\n  run:\n\n    sinputs = [i.replace('.done','_for_SaTAnn') for i in list(input)]\n    sinputs = list(filter(os.path.isfile,sinputs))\n    nopsites = 'true' if len(sinputs) is 0 else ''\n    print(nopsites)\n    print(sinputs)\n\n    sinputsjoin = ','.join(sinputs)\n\n    # print('\\n\\n\\n')\n    # print( (input[4]))\n    # print('\\n\\n\\n')\n    # print( sinputs[4])\n    # print('\\n\\n\\n')\n    shell(r\"\"\"\n    mkdir -p $( dirname {output} )\n\n     if [ {nopsites} ] ; then\n     \ttouch $(dirname {output})/nopsites\n     \texit\n     fi\n\n      Rscript {SaTAnn_script} \\\n        {REF} \\\n        riboqc/{ANNOBASE}.annoout \\\n        {threads} \\\n        {sinputsjoin} \\\n        $(dirname {output})/SaTAnn\n\n      \"\"\")\n#&& [[ -s {output} ]]\n\nribqc_report='/fast/work/groups/ag_ohler/dharnet_m/satann_working/riboseqc.Rmd'\nrule knit_riboqc:\n  input: \n    riboqcoutput=lambda wc:\n      ['riboqc/data/'+s+'/.done' for s in samplegroups[wc['groupname']] ],\n    ribqc_report=ribqc_report\n  output: 'riboqc/reports/{groupname}/riboqcreport.html'\n  run:\n    #knitr's file path fuckery means we need to cd and hand it absolute paths, god knows where it's working directory ends up.\n    indata = [i.replace('.done','_results_all_toknit') for i in list(input['riboqcoutput'])]\n    indata = [os.path.abspath(r) for r in indata]\n    indata = ','.join(indata)\n    sinputs = ','.join(samplegroups[wildcards['groupname']])\n    figpath = os.path.abspath(output[0]).replace('.html','')+'_fig'\n    outpath = os.path.abspath(output[0])\n    shell(r\"\"\"\n    cd $(dirname {output})\n    R -e 'rmarkdown::render(\"{input.ribqc_report}\",params = list(input_list = \"{indata}\",input_list_names = \"{sinputs}\", output_fig_path = \"{figpath}\"),output_file = \"{outpath}\")'\n\"\"\")\n\n\nVCF_DICT = {'ONVC' : ['../ext_data/vcfs_october_2018/vcfs/0NVC_M07_240517','../ext_data/vcfs_october_2018/vcfs/0NVC_M07_240517/M07_mq_240517.vcf'],\n  'OD5P' : ['../ext_data/vcfs_october_2018/vcfs/0D5P_M11_240517/M11_tumor_240517.fasta','../ext_data/vcfs_october_2018/vcfs/0D5P_M11_240517/M11_mq_240517.vcf'],\n  'OMM' : ['../ext_data/vcfs_october_2018/vcfs/0MM745_M02_240517/M02_mq_240517.vcf']\n}\n\nmodfastascript='../src/modify_orf_seqs.R'\n\nrule modify_satannfasta:\n  input:\n    'groupedsatan/{group}.genomic.gtf',REF\n  output:\n    'groupedsatan/{group}.variantmod.fasta'\n  run:\n    vcfs = ','.join(VCF_DICT[wildcards['group']])\n    shell(r\"\"\"\n      Rscript {modfastascript} {input} {vcfs} {output}\n       \"\"\")\n\n\nrule make_id_table:\n  input: GTF\n  output: 'ids.txt'\n  shell: r\"\"\"R -e 'library(tidyverse,quiet=T); library(rtracklayer,quiet=T);import(\"{input}\") %>%mcols%>%as.data.frame%>% select(gene_id,gene_name)%>%distinct%>%write.table(\"{output}\", col.names=TRUE, row.names=FALSE)'\"\"\"\n\nDISPDIFF = 0\nrule run_ribodiff:\n  input: 'feature_counts/all_feature_counts'\n  conda: 'ribodiff'\n  output: touch('ribodiff/.done')\n  shell: r\"\"\"Rscript ../exploration/pipeline/run_ribodiff.R {input} {DISPDIFF} $(dirname {output})\"\"\"\n\n\n\n\n\n#rule run_template:\n#  input: templatefinput\n#  output: touch('run_template/.done')\n#  shell: r\"\"\"template {input} $(dirname {output})\"\"\"\n",
+			"file": "pipeline.mitoribo_messy.smk",
+			"file_size": 0,
+			"file_write_time": 131994475570000000,
+			"settings":
+			{
+				"buffer_size": 36543,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/fast/work/groups/ag_ohler/dharnet_m/cortexomics/src/pipeline.snake",
+			"settings":
+			{
+				"buffer_size": 69854,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"sidebar",
+				"View: Toggle Open Files in Side Bar"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"pyt",
+				"Set Syntax: Python"
+			],
+			[
+				"py",
+				"Set Syntax: Python"
+			],
+			[
+				"open",
+				"Open URL"
+			],
+			[
+				"disable",
+				"Package Control: Disable Package"
+			],
+			[
+				"sour",
+				"Build With: R - Source File"
+			],
+			[
+				"source",
+				"Build With: R - Source File"
+			],
+			[
+				"souer",
+				"Build With: R - Source File"
+			],
+			[
+				"sou",
+				"Build With: R - Source File"
+			],
+			[
+				"so",
+				"Build With: R - Source File"
+			],
+			[
+				"terminus",
+				"Terminus: Toggle Panel"
+			],
+			[
+				"sendcod",
+				"SendCode: Choose Program"
+			],
+			[
+				"pytho",
+				"Set Syntax: Python"
+			],
+			[
+				"disab",
+				"Package Control: Disable Package"
+			],
+			[
+				"python",
+				"Set Syntax: Python"
+			],
+			[
+				"ter",
+				"Terminal View: Open Bash Terminal"
+			],
+			[
+				"ins",
+				"Package Control: Install Package"
+			],
+			[
+				"alview",
+				"Preferences: Terminal View: Readme"
+			],
+			[
+				"termi",
+				"Terminal View: Open Bash Terminal"
+			],
+			[
+				"term",
+				"Terminal View: Open Bash Terminal"
+			],
+			[
+				"terminal",
+				"Terminal View: Open Bash Terminal"
+			]
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/fast/work/groups/ag_ohler/dharnet_m/Mitochondrialribo/src/pipeline.mitoribo.snake",
+		"/fast/work/groups/ag_ohler/dharnet_m/cortexomics/src/Stan/degmodel_simple_linear.stan",
+		"/fast/work/groups/ag_ohler/dharnet_m/cortexomics/src/Stan/degmodel_nonhierach.stan",
+		"/fast/work/groups/ag_ohler/dharnet_m/cortexomics/src/Stan/degmodel_simple_linear.",
+		"/Users/dharnet/projects/cortexomics/src/R/modeling/get_limma_fold_changes.R",
+		"/fast/users/dharnet_m/.bashrc",
+		"/Users/dharnet/.bashrc",
+		"/Users/dharnet/bih_cluster/fast/work/groups/ag_ohler/dharnet_m/satann_working/get_missing_trpvals.R",
+		"/fast/work/groups/ag_ohler/dharnet_m/satann_working/functions_satan_quant_May8_2018.R",
+		"/Users/dharnet/projects/cortexomics/src/R/degredation_fixed.R",
+		"/Users/dharnet/projects/cortexomics/src/modeling/get_limma_fold_changes.R",
+		"/Users/dharnet/projects/cortexomics/src/R/degredation.R",
+		"/Users/dharnet/projects/cortexomics/src/R/mappability.R",
+		"/Users/dharnet/projects/cortexomics/src/R/assemble_gage_sets.R",
+		"/fast/work/groups/ag_ohler/dharnet_m/Ribo_Lausanne/src/pipeline.snake",
+		"/fast/work/groups/ag_ohler/dharnet_m/Ribo_Lausanne/pipeline/SaTAnn/OD5P/SaTAnn_Final_ORFs_files",
+		"/Users/dharnet/projects/RiboseQC/vignettes/RiboseQC.Rmd",
+		"/fast/work/groups/ag_ohler/dharnet_m/cortexomics/src/pipeline.snake",
+		"/fast/groups/ag_ohler/work/dharnet_m/satann_working/Satan_working_hg38_genc25_May8.R",
+		"/fast/work/groups/ag_ohler/dharnet_m/satann_working/Satan_working_hg38_genc25_May8.R",
+		"/fast/work/groups/ag_ohler/dharnet_m/Ribo_Lausanne/pipeline/sample_file.txt",
+		"/fast/work/groups/ag_ohler/dharnet_m/Ribo_Lausanne/pipeline/sample_parameter.csv",
+		"/Users/dharnet/RiboseQC/R/riboseqc_analysis_functions.R",
+		"/fast/work/groups/ag_ohler/dharnet_m/Ribo_Lausanne/src/loci_plots.R",
+		"/Users/dharnet/bih_cluster/fast/work/groups/ag_ohler/dharnet_m/cortexomics/src/R/degredation_multi.R",
+		"/Users/dharnet/bih_cluster/fast/work/groups/ag_ohler/dharnet_m/cortexomics/src/R/degredation_fixed.R",
+		"/Users/dharnet/projects/neuron_gliaresponse/gprofiler_res_analyze.R",
+		"/Users/dharnet/bih_cluster/fast/work/groups/ag_ohler/dharnet_m/cortexomics/src/pipeline.snake",
+		"/Users/dharnet/bih_cluster/fast/work/groups/ag_ohler/dharnet_m/cortexomics/src/mappability.R",
+		"/fast/work/groups/ag_ohler/dharnet_m/cortexomics/src/R/cell_deconve.R",
+		"/fast/work/groups/ag_ohler/dharnet_m/cortexomics/src/R/assemble_gage_sets.R",
+		"/fast/work/groups/ag_ohler/dharnet_m/cortexomics/pipeline/rseq/design.yaml",
+		"/Users/dharnet/bih_cluster/fast/work/groups/ag_ohler/dharnet_m/cortexomics/exploration/load_data/integrate_exprdata.R",
+		"/Users/dharnet/bih_cluster/fast/work/groups/ag_ohler/dharnet_m/cortexomics/pipeline/rseq/inst/rmd/de/build_project.R",
+		"/Users/dharnet/bih_cluster/fast/groups/ag_ohler/work/dharnet_m/satann_working/satann_zoschkelab_2019/Ribo.seQC.R",
+		"/Users/dharnet/bih_cluster/fast/groups/ag_ohler/work/dharnet_m/cortexomics/src/riboseQC.sh",
+		"/Users/dharnet/bih_cluster/fast/groups/ag_ohler/work/dharnet_m/satann_working/analysis_qc_mod_jan2018_12.R",
+		"/Users/dharnet/bih_cluster/fast/groups/ag_ohler/work/dharnet_m/satann_working/satann_zoschkelab_2019/simulate_reads.R",
+		"/Users/dharnet/bih_cluster/fast/groups/ag_ohler/work/dharnet_m/satann_working/satann_zoschkelab_2019/satann_riboseQC_functions.R",
+		"/Users/dharnet/Library/Application Support/Sublime Text 3/Packages/TerminalView/README.md",
+		"/Users/dharnet/bih_cluster/fast/groups/ag_ohler/work/dharnet_m/cortexomics/src/Reports/lab_meeting_nov_2018.tex",
+		"/Users/dharnet/bih_cluster/fast/groups/ag_ohler/work/dharnet_m/cortexomics/src/Reports/lab_meeting_nov_2018.Rmd",
+		"/Users/dharnet/bih_cluster/fast/groups/ag_ohler/work/dharnet_m/cortexomics/src/Reports/lab_meeting_nov_2018.md",
+		"/Users/dharnet/bih_cluster/fast/groups/ag_ohler/work/dharnet_m/cortexomics/src/R/assemble_gage_sets.R",
+		"/Users/dharnet/bih_cluster/fast/groups/ag_ohler/work/dharnet_m/cortexomics/src/uORF_deORF_te.R",
+		"/Users/dharnet/bih_cluster/fast/groups/ag_ohler/work/dharnet_m/cortexomics/src/pipeline.snake",
+		"/Users/dharnet/bih_cluster/fast/groups/ag_ohler/work/dharnet_m/cortexomics/src/go_genetbl.Rmd",
+		"/Users/dharnet/bih_cluster/fast/groups/ag_ohler/work/dharnet_m/cortexomics/src/go_genetbl.html"
+	],
+	"find":
+	{
+		"height": 23.0
+	},
+	"find_in_files":
+	{
+		"height": 101.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": true,
+		"find_history":
+		[
+			"starindex"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": true,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 3,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "/Users/dharnet/bih_cluster/fast/work/groups/ag_ohler/dharnet_m/Mitochondrialribo/mitoribo.Rmd",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 185,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								101,
+								101
+							]
+						],
+						"settings":
+						{
+							"auto_name": "",
+							"highlight_line": false,
+							"syntax": "Packages/R-IDE/R Markdown.sublime-syntax",
+							"vintage":
+							{
+								"_vintageous_glue_until_normal_mode": false,
+								"_vintageous_non_interactive": false,
+								"_vintageous_processing_notation": false,
+								"action": null,
+								"action_count": "",
+								"mode": "mode_normal",
+								"motion": null,
+								"motion_count": "",
+								"must_capture_register_name": false,
+								"normal_insert_count": "1",
+								"partial_sequence": "",
+								"register": "\"",
+								"sequence": "",
+								"xpos": 0
+							}
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "/fast/work/groups/ag_ohler/dharnet_m/Mitochondrialribo/src/pipeline.mitoribo.smk",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 14738,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								288,
+								288
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true,
+							"vintage":
+							{
+								"_vintageous_glue_until_normal_mode": false,
+								"_vintageous_non_interactive": false,
+								"_vintageous_processing_notation": false,
+								"action": null,
+								"action_count": "",
+								"mode": "mode_normal",
+								"motion": null,
+								"motion_count": "",
+								"must_capture_register_name": false,
+								"normal_insert_count": "1",
+								"partial_sequence": "",
+								"register": "\"",
+								"sequence": "",
+								"xpos": 0
+							}
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "pipeline.mitoribo_messy.smk",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 36543,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								8260,
+								8260
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true,
+							"vintage":
+							{
+								"_vintageous_glue_until_normal_mode": false,
+								"action": null,
+								"action_count": "",
+								"mode": "mode_normal",
+								"motion": null,
+								"motion_count": "",
+								"must_capture_register_name": false,
+								"normal_insert_count": "1",
+								"partial_sequence": "",
+								"register": "\"",
+								"sequence": "",
+								"xpos": 0
+							}
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "/fast/work/groups/ag_ohler/dharnet_m/cortexomics/src/pipeline.snake",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 69854,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								20361,
+								20361
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true,
+							"vintage":
+							{
+								"_vintageous_glue_until_normal_mode": false,
+								"_vintageous_non_interactive": false,
+								"_vintageous_processing_notation": false,
+								"action": null,
+								"action_count": "",
+								"mode": "mode_normal",
+								"motion": null,
+								"motion_count": "",
+								"must_capture_register_name": false,
+								"normal_insert_count": "1",
+								"partial_sequence": "",
+								"register": "\"",
+								"sequence": "",
+								"xpos": 5
+							}
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 23.0
+	},
+	"input":
+	{
+		"height": 45.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.Terminus":
+	{
+		"height": 518.0
+	},
+	"output.Terminus 2":
+	{
+		"height": 440.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.mdpopups":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "",
+	"replace":
+	{
+		"height": 42.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"pip",
+				"/fast/work/groups/ag_ohler/dharnet_m/Ribo_Lausanne/src/pipeline.snake"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+		"_vintageous_last_buffer_search": "gffread",
+		"_vintageous_last_buffer_search_command": "vi_slash",
+		"_vintageous_reset_during_init": true,
+		"vintage":
+		{
+			"_cmdline_cd": "/fast/work/groups/ag_ohler/dharnet_m/Mitochondrialribo/src"
+		}
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 201.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
