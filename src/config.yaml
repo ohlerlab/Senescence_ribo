@@ -3,6 +3,7 @@ root: "/fast/work/groups/ag_ohler/dharnet_m/senescence_ribo/"
 REF_orig: "/fast/work/groups/ag_ohler/dharnet_m/genomes/hg38.fa"
 GTF_orig: "../ext_data/annotation/gencode.v30.annotation.gtf"
 GFF_orig: "../ext_data/annotation/gencode.v30.annotation.gff3"
+REMOVE8NBIN: "../src/remove8N_twoarg.pl"
 MINREADLENGTH: 18
 MAXREADLENGTH: 100
 QUALLIM: 20

@@ -1,0 +1,8 @@
+#Notes
+This is bin Yue's Riboseq/Rnaseq project, aimed at quantifying translational reuglation changes over cellular senescence.
+
+E is for Empty, R is for Ras - the treatment
+
+
+
+I think the process here will be to remove everything after the barcode, then collapse, then remove everything before the barcode

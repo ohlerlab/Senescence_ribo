@@ -1,13 +1,12 @@
-#
 import glob
 import pandas as pd
 from pathlib import Path
 import ipdb
 
 def is_nonempty(file):
-  assert Path(file).stat.st_size
+  assert Path(file).stat().st_size
 def is_over_size(file,n):
-  assert Path(file).stat.st_size > n
+  assert Path(file).stat().st_size > n
 def newfolder(file,newroot):
   file = Path(file)
   assert snakedir in file.parents , str(snakedir) + " doesn't seem to be in parents of " + str(file)
@@ -35,6 +34,7 @@ for sample in sampledf.sample_id:
   for f in seqfilesdf.loc[[sample],'file']:
     assert snakedir/'input'/sample in Path(f).parents, 'This path should be input/sample/file :'+f
 
+ipdb.set_trace()
 
 samples = list(sampledf['sample_id'].unique())
 fastqs = list(seqfilesdf['file'].unique())
@@ -57,16 +57,17 @@ rule all:
   input:
     seqfilesdf.file.unique(),
     expand("processed_reads/{sample}/.done", sample = sampledf.sample_id.unique()),
-    # expand("fastqc/data/{sample}/.done", sample = samples),
-    # expand("star/data/{sample}/.done", sample = samples),
-    # expand("qc/data/{sample}/.done", sample = samples),
-    # ("multiqc/multiqc_report.html"),
-    # expand("feature_counts/data/{sample}/feature_counts", sample = samples),
+    expand("fastqc/data/{sample}/.done", sample = samples),
+    expand("star/data/{sample}/.done", sample = samples),
+    expand("qc/data/{sample}/.done", sample = samples),
+    ("multiqc/multiqc_report.html"),
+    expand("feature_counts/data/{sample}/feature_counts", sample = samples),
     # expand("feature_counts/all_feature_counts"),
     # # expand("bigwigs/{group}/{strand}/{istrans}.done",group = samples,strand=strands,istrans=istransvals),
     # # expand("mergedbigwigs/{group}/{strand}/{istrans}.done",group = GROUPS,strand=strands,istrans=istransvals),
     # expand('riboqc/reports/{sample}/riboqcreport.html', sample = ribosamples+groupnames),
     # expand('groupedsatan/{group}.fasta', group = groupnames),
+
 
 
 rule link_in_ref:
@@ -98,7 +99,7 @@ rule cutadapt_reads:
        mkdir -p cutadapt_reads/{wildcards.sample}/
         zcat {input} \
            | cutadapt \
-             -a TGGAATTCTCGGGTGCCAAGG \
+             -a {params.adaptorseq} \
             --minimum-length {params.MINREADLENGTH} \
             --maximum-length {params.MAXREADLENGTH} \
             -q {params.QUALLIM} - \
@@ -236,13 +237,13 @@ rule filter_tRNA_rRNA:
 
     """)
 
-
-
+#takes a file, which has 
 def get_processed_files(wc): 
   if wc['sample'] in ribosamples:
     return [ newfolder(fq,'filter_reads') for fq in seqfilesdf.loc[ [wc['sample']],'file' ] ]
   else:
-    return list(seqfilesdf['file'][wc['sample']])
+    return seqfilesdf['file'][[wc['sample']]]
+
 #this rule is the 'signal spliter where we go from sample to indiv fastqs
 rule link_processed_reads:
   input: get_processed_files
@@ -273,7 +274,7 @@ rule fastqc:
 
 rule gffread:
   input: REF=config['REF_orig'],GTF=config['GTF_orig'],GFF=config['GFF_orig']
-  output: REF,GTF,CDSGTF,RNAFASTA,CDSFASTA,BED,GFF
+  output: GTF,CDSGTF,RNAFASTA,CDSFASTA,BED,GFF
   conda: '../envs/gffread.yml'
   shell: r""" 
       ln -s {input.REF} {REF}
@@ -319,7 +320,7 @@ rule star_index:
       --runThreadN {threads} \
       --runMode genomeGenerate \
       --genomeDir $(dirname {output}) \
-      --gtf {input.GTF} \
+      --sjdbGTFfile {input.GTF} \
       --genomeFastaFiles {input.REF}
       """)  
 
@@ -350,21 +351,24 @@ def get_fastqops(inputdir,read_pattern,lstring='<( zcat ',rstring=')'):
     
 
 
+
+
+
 rule star:
      input:
           fastqs='processed_reads/{sample}/.done',
           STARINDEX='starindex/.done',
           bowtie_index='bowtie_index/.done',
      output:
-          done = touch('star/data/{sample,[^/]+}/.done')
+          done = touch('star/data/{sample,[^/]+}/.done'),bam='star/data/{sample}/{sample}.bam'
      threads: 8
      run:
           input.STARINDEX=input.STARINDEX.replace('.done','')
-          markdup = '' if ASSAY_DICT[wildcards['sample']] == 'ribo' else '-m'
+          markdup = '' if sampledf.assay[wildcards['sample']] == 'ribo' else '-m'
           platform = 'NotSpecified'
           inputdir = os.path.dirname(input['fastqs'])
           outputdir = os.path.dirname(output[0])
-          read_pattern = READ_PATTERN_DICT[wildcards['sample']]
+          read_pattern = sampledf.read_pattern[wildcards['sample']]
           fastqops = get_fastqops(inputdir,read_pattern,lstring='<( zcat ',rstring=')')
           repdir = outputdir.replace('data','reports')
           tophatindex =input['bowtie_index'].replace('.done','')
@@ -372,7 +376,8 @@ rule star:
           halfthreads = threads/2
           sortmem = str(int(5000/halfthreads))+'M'
 
-          remap = '1' if ASSAY_DICT[wildcards['sample']] == 'ribo' else ''
+          # remap = '1' if sampledf.assay[wildcards['sample']] == 'ribo' else ''
+          remap = '' 
 
           sample = wildcards['sample']
           shell(r"""
@@ -458,17 +463,86 @@ rule star:
           """)
 
 
+rrna_intervals = 'qc/picard_rrna_intervals.txt'
+refflat = snakedir/ 'qc' / Path(config['GFF_orig']).with_suffix('.refflat').name
+
+rule make_picard_files:
+  input: GTF,'star/data/'+samples[0]+'/.done'
+  output: intervals=rrna_intervals,refflat=refflat
+  conda: '../envs/picard'
+  shell:r"""
+         samtools view -H star/data/{SAMPLES[0]}/{SAMPLES[0]}.bam > {output.intervals}
+        
+         grep -Pe 'gene_type..rRNA.' {input[0]} \
+         | awk '$3 =="transcript"' \
+         | cut -f 1,4,5,7,9 \
+         | perl -lane ' /transcript_id "([^"]+)"/ or die "notranscript_id on $."; print join "\t", (@F[0,1,2,3], $1) ' \
+         | sort -k1V -k2n -k3n  - >> {output.intervals}
+        
+        gtfToGenePred -geneNameAsName2 {GTF} {GTF}.genepred
+        cat {GTF}.genepred | awk -vOFS="\t" '{{print $1,$0}}' > {output.refflat}
+
+  """
+
+
+rule qc:
+     input:
+          fastqc='fastqc/data/{sample}/.done',
+          star='star/data/{sample}/.done',
+          refflat = refflat,
+          rrna_intervals = rrna_intervals,
+     output:
+          done=touch('qc/data/{sample}/.done'),
+     conda: '../envs/picard'
+     resources:
+     params:
+        singleendflag = lambda wc: ' -singeEnd ' if sampledf.loc[wc['sample'],'library_layout'] == 'PAIRED' else '',
+        bamfile = lambda wc:'star/data/'+wc['sample']+'/'+wc['sample']+'.bam' 
+    
+     shell: """
+          set -e
+          set -xv
+          
+        OUTDIR=$(dirname {output.done})
+        mkdir -p qc/reports/{wildcards.sample}/
+
+        {SCRIPTDIR}/read_statistic_report.sh \
+         -l star/reports/{wildcards.sample}/Log.final.out  \
+         -g $(dirname {input.fastqc}) \
+         -o ${{OUTDIR}}/read_alignment_report.tsv \
+         &> qc/reports/{wildcards.sample}/{wildcards.sample}_qc.log 
+
+         picard CollectRnaSeqMetrics -Xms4G \
+          I={params.bamfile} \
+          O=${{OUTDIR}}/{wildcards.sample}_picard_qc.txt \
+          REF_FLAT={refflat} \
+          STRAND=FIRST_READ_TRANSCRIPTION_STRAND \
+          RIBOSOMAL_INTERVALS={rrna_intervals}
+        
+        picard CollectAlignmentSummaryMetrics \
+          INPUT={params.bamfile} \
+          OUTPUT=${{OUTDIR}}/{wildcards.sample}.picard.alignmentmetrics.txt \
+          R={REF}
+
+      {SCRIPTDIR}/read_duplication.sh \
+        -i {params.bamfile} \
+        -o ${{OUTDIR}}/duplication/ \
+        &> qc/reports/{wildcards.sample}/{wildcards.sample}_qc.log 
+
+          """
+     
+
 
 
 rule multiqc:
   input:
-      expand("fastqc/data/{sample}/.done", sample = SAMPLES),
-      expand("star/data/{sample}/.done", sample = SAMPLES),
-      expand("qc/data/{sample}/.done", sample = SAMPLES),
-      # expand("tophat2/data/{sample}/.done", sample = SAMPLES),
-      [f.replace('input','filter_reads') for f in  ribofastqs],
-      expand("feature_counts/data/{sample}/feature_counts", sample = SAMPLES),
-      'sample_file.txt'
+      expand("fastqc/data/{sample}/.done", sample = samples),
+      expand("star/data/{sample}/.done", sample = samples),
+      expand("qc/data/{sample}/.done", sample = samples),
+      # expand("tophat2/data/{sample}/.done", sample = samples),
+      # [f.replace('input','filter_reads') for f in  seqfilesdf.file[ribosamples]],
+      expand("feature_counts/data/{sample}/feature_counts", sample = samples),
+      # 'sample_file.txt'
   params: multiqcscript = config['multiqcscript']
   output:
     'multiqc/multiqc_report.html'
@@ -484,3 +558,64 @@ rule multiqc:
 
       {multiqcscript} {reportsdirs} -fo $(dirname {output[0]}) -c multiqc_config.yaml --sample-names multiqc/samplenames.txt
       """)
+
+
+
+
+
+rule feature_counts:
+     input:
+          GTF,CDSGTF,
+          BAM='star/data/{sample}/{sample}.bam'
+     output:
+          done = 'feature_counts/data/{sample}/feature_counts'
+     threads: 2
+     run:
+          
+          #protocol type
+          protocol = sampledf.protocol[wildcards['sample']]
+          if (protocol == 'no'):
+               protocol = 0
+          elif (protocol == 'yes'):
+               protocol = 1
+          elif (protocol == 'reverse'):
+               protocol = 2
+          else:
+               sys.exit('Protocol not known!')
+
+          library = sampledf.library[wildcards['sample']]
+
+          #get library type
+          if (library == 'PAIRED'):
+               library = '-p'
+          else:
+               library = ''
+
+          #multimapper type
+          countmultimappers = ' ' 
+          
+          # if (wildcards['region']=='tRNAs'):
+          #   featuretype = 'tRNA'
+          #   countmultimappers = '-M --fraction'
+
+
+          sample = wildcards['sample']
+          region = wildcards['region']
+          rangebam = input['readrangefilt']
+          groupcol = 'gene_id'
+          
+          shell(r"""
+          set -ex
+          mkdir -p feature_counts_readrange/data/{sample}/{region}/{readrange}/
+          mkdir -p feature_counts/reports/{wildcards.sample}/
+          featureCounts \
+            -T {threads} \
+            -t {region} -g {groupcol} \
+            -a {GTF} \
+            -s {protocol} {library} {countmultimappers} \
+            -o feature_counts_readrange/data/{sample}/{region}/{readrange}/feature_counts \
+            {rangebam} \
+             &> feature_counts/reports/{wildcards.sample}/{wildcards.sample}.feature_counts.log
+
+          """)
+
