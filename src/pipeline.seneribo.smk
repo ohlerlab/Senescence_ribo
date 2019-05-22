@@ -34,18 +34,20 @@ for sample in sampledf.sample_id:
   for f in seqfilesdf.loc[[sample],'file']:
     assert snakedir/'input'/sample in Path(f).parents, 'This path should be input/sample/file :'+f
 
-ipdb.set_trace()
 
 samples = list(sampledf['sample_id'].unique())
 fastqs = list(seqfilesdf['file'].unique())
 ribosamples = sampledf.sample_id[sampledf['assay']=='ribo']
 
-
+#for trimming CDS for riboseq
+STARTCODTRIM=config['STARTCODTRIM']
+STOPCODTRIM=config['STOPCODTRIM']
 #local copies of the annotation
 REF = snakedir / Path(config['REF_orig']).with_suffix('.fa').name
 GTF = snakedir / Path(config['GTF_orig']).with_suffix('.gtf').name
 GFF = snakedir / Path(config['GFF_orig']).with_suffix('.gff3').name
 CDSGTF = GTF.with_suffix('.cds.gtf')
+TRIMCDSGTF = str(CDSGTF).replace('.gtf','.trim_'+str(STARTCODTRIM)+'_'+str(STOPCODTRIM)+'.gtf')
 RNAFASTA = GTF.with_suffix('.fa')
 CODINGFASTA=GTF.with_suffix('.coding.fa')
 PROTEINFASTA=GTF.with_suffix('.protein.fa')
@@ -64,9 +66,10 @@ rule all:
     expand("feature_counts/data/{sample}/feature_counts", sample = samples),
     # expand("feature_counts/all_feature_counts"),
     # # expand("bigwigs/{group}/{strand}/{istrans}.done",group = samples,strand=strands,istrans=istransvals),
-    # # expand("mergedbigwigs/{group}/{strand}/{istrans}.done",group = GROUPS,strand=strands,istrans=istransvals),
-    # expand('riboqc/reports/{sample}/riboqcreport.html', sample = ribosamples+groupnames),
-    # expand('groupedsatan/{group}.fasta', group = groupnames),
+    # expand("mergedbigwigs/{group}/{strand}/{istrans}.done",group = GROUPS,strand=strands,istrans=istransvals),
+    expand('riboqc/reports/{sample}/riboqcreport.html', sample = ribosamples),
+    expand('SaTAnn/{sample}/.done', sample = ribosamples),
+    expand('cdsmax/{sample}/cdsmax_offsets.tsv', sample = ribosamples),
 
 
 
@@ -74,7 +77,7 @@ rule link_in_ref:
   input: config['REF_orig']
   output: REF
   shell:r"""
-      ln -fs {config['REF_orig']} {REF}
+      ln -fs {input} {REF}
       """
 
 rule link_in_files:
@@ -132,6 +135,7 @@ rule collapse_reads:
 rule trim_reads:
     input: 'collapse_reads/{sample}/{fastq}'
     output: 'trim_reads/{sample}/{fastq}'
+    params: REMOVE8NBIN = config['REMOVE8NBIN']
     run:
         sample = wildcards['sample']
         shell(r"""
@@ -140,14 +144,12 @@ rule trim_reads:
        OUTDIR=$(dirname {output})
        mkdir -p  $OUTDIR
      
-       {REMOVE8NBIN} {input} {output}
+       {params.REMOVE8NBIN} {input} {output}
 
        gzip -f {output}
        mv {output}.gz {output}
 
      """)
-
-
 
 rule make_trna_rrna_indices:
   input: GTF,contaminants="../contaminants/contaminants.fa"
@@ -194,19 +196,19 @@ rule filter_tRNA_rRNA:
       # filter_index    
     output: 'filter_reads/{sample}/{fastq}',
     threads: 8
-    run:
-      sample = wildcards['sample']
-      indexname = input[1].replace('.done','')
-      outdir = os.path.dirname(output[0])
-      shell(r"""
+    conda: '../envs/bowtie2'
+    params: 
+      indexname = lambda wc,input: input[1].replace('.done',''),
+      outdir = lambda wc,output: os.path.dirname(output[0]) 
+    shell:"""
        set -evx
 
-       [ -f {outdir} ] && rm -rf {outdir}
+       [ -f {params.outdir} ] && rm -rf {params.outdir}
      
-       mkdir -p  {outdir}
+       mkdir -p  {params.outdir}
 
       bowtie2 \
-        -x {indexname} \
+        -x {params.indexname} \
         -L 20  \
         -p {threads}  \
         -N 0 \
@@ -222,20 +224,21 @@ rule filter_tRNA_rRNA:
       samtools index {output[0]}.filtered_reads.bam
       
       #those which mismatch twice should not be included
-      samtools view -hb {outdir}/filtered_reads.bam \
+      samtools view -hb {params.outdir}/filtered_reads.bam \
       | bamtools filter -tag XM:2-10 -in - -out /dev/stdout \
       | samtools view -H > {output[0]}.mm.sam
-      #>> {outdir}/unmapped.sam
+      #>> {params.outdir}/unmapped.sam
      
       #group the idx columns stuff is from 
       samtools idxstats {output[0]}.filtered_reads.bam \
       | perl -lanpe 's/^(\S+)_[^_\s]+\t/$1\t/' > {output[0]}.idxtmp
 
-      #Rscript --vanilla {collate_idxscript} {output[0]}.idxtmp {indexname}.fa
+      #Rscript --vanilla {collate_idxscript} {output[0]}.idxtmp {params.indexname}.fa
 
       samtools stats {output[0]}.filtered_reads.bam > samtools stats {output[0]}.filtered_reads.bam.stats
 
-    """)
+    """
+
 
 #takes a file, which has 
 def get_processed_files(wc): 
@@ -254,13 +257,14 @@ rule link_processed_reads:
         ln -rifs $(readlink -f {input}) processed_reads/{wildcards.sample}/
     """)
 
+
 rule fastqc:
      input: 'processed_reads/{sample}/.done'
      output: touch('fastqc/data/{sample}/.done')
      threads: 4
      log:'fastqc/reports/{sample}/fastqc.log'
      params:
-      reads = lambda wc: [fq.replace('input/','processed_reads/') for fq in seqfilesdf['file'][wc['sample']]],
+      reads = lambda wc: [fq.replace('input/','processed_reads/') for fq in seqfilesdf['file'][[wc['sample']]]],
       outdir = lambda wc: 'fastqc/data/'+wc.sample+'/'
      shell: '''
           OUTDIR=$(dirname {output[0]})
@@ -310,6 +314,17 @@ rule gffread:
       cat {input.GTF} | awk '{{print $1,$4,$5,"name",$6,$7}}' > {BED}
     """
 
+# rule trim_CDS:
+#   input: GTF,
+#   params:
+#     STARTCODTRIM=15,
+#     STOPCODTRIM=5,
+#   output: TRIMCDSGTF
+#     outdir= '.'
+#   shell:r"""
+#     Rscript ../src/trim_coding_sequences.R {input[0]} {params[0:2]} {output[0]}
+#   """
+
 rule star_index:
   input: REF=REF,GTF=GTF
   output: touch('starindex/.done')
@@ -348,10 +363,6 @@ def get_fastqops(inputdir,read_pattern,lstring='<( zcat ',rstring=')'):
   return(fastqops)
 
 
-    
-
-
-
 
 
 rule star:
@@ -378,7 +389,7 @@ rule star:
 
           # remap = '1' if sampledf.assay[wildcards['sample']] == 'ribo' else ''
           remap = '' 
-
+          
           sample = wildcards['sample']
           shell(r"""
             set -x
@@ -471,7 +482,7 @@ rule make_picard_files:
   output: intervals=rrna_intervals,refflat=refflat
   conda: '../envs/picard'
   shell:r"""
-         samtools view -H star/data/{SAMPLES[0]}/{SAMPLES[0]}.bam > {output.intervals}
+         samtools view -H star/data/{samples[0]}/{samples[0]}.bam > {output.intervals}
         
          grep -Pe 'gene_type..rRNA.' {input[0]} \
          | awk '$3 =="transcript"' \
@@ -496,17 +507,19 @@ rule qc:
      conda: '../envs/picard'
      resources:
      params:
-        singleendflag = lambda wc: ' -singeEnd ' if sampledf.loc[wc['sample'],'library_layout'] == 'PAIRED' else '',
-        bamfile = lambda wc:'star/data/'+wc['sample']+'/'+wc['sample']+'.bam' 
-    
+        singleendflag = lambda wc: ' -e ' if sampledf.loc[wc['sample'],'library_layout'] != 'PAIRED' else '',
+        bamfile = lambda wc:'star/data/'+wc['sample']+'/'+wc['sample']+'.bam' ,
+        scriptdir = lambda wc:  config['rnaseqpipescriptdir']
      shell: """
-          set -e
-          set -xv
+          set -exv
           
         OUTDIR=$(dirname {output.done})
         mkdir -p qc/reports/{wildcards.sample}/
 
-        {SCRIPTDIR}/read_statistic_report.sh \
+
+        #{params.scriptdir}/run_RNA-SeQC.sh -i {params.bamfile} {params.singleendflag} -t {GTF} -r {REF} -o ${{OUTDIR}}/
+
+        {params.scriptdir}/read_statistic_report.sh \
          -l star/reports/{wildcards.sample}/Log.final.out  \
          -g $(dirname {input.fastqc}) \
          -o ${{OUTDIR}}/read_alignment_report.tsv \
@@ -524,15 +537,20 @@ rule qc:
           OUTPUT=${{OUTDIR}}/{wildcards.sample}.picard.alignmentmetrics.txt \
           R={REF}
 
-      {SCRIPTDIR}/read_duplication.sh \
+      {params.scriptdir}/read_duplication.sh \
         -i {params.bamfile} \
-        -o ${{OUTDIR}}/duplication/ \
-        &> qc/reports/{wildcards.sample}/{wildcards.sample}_qc.log 
+        -o ${{OUTDIR}}/duplication/
 
           """
      
 
-
+def get_multiqc_dirs(wildcards,input):
+      reportsdirs = list(input)
+      reportsdirs=[s.replace('star/data','star/reports') for s in reportsdirs]
+      reportsdirs=[s.replace('tophat2/data','tophat2/reports') for s in reportsdirs]
+      reportsdirs=[os.path.dirname(s) for s in list(reportsdirs)]
+      assert len(reportsdirs) > 0
+      return(reportsdirs)
 
 rule multiqc:
   input:
@@ -543,29 +561,27 @@ rule multiqc:
       # [f.replace('input','filter_reads') for f in  seqfilesdf.file[ribosamples]],
       expand("feature_counts/data/{sample}/feature_counts", sample = samples),
       # 'sample_file.txt'
-  params: multiqcscript = config['multiqcscript']
+  conda: '../envs/multiqc'
+  params: 
+    multiqcscript = config['multiqcscript'],
+    sample_reads_file=config['sample_files'],
+    reportsdirs= get_multiqc_dirs,
+    sampnames = '--sample-names '+config.get('samplenamesfile') if config.get('samplenamesfile') else ''
   output:
     'multiqc/multiqc_report.html'
-  run:
-    reportsdirs = list(input)
-    reportsdirs=[s.replace('star/data','star/reports') for s in reportsdirs]
-    reportsdirs=[s.replace('tophat2/data','tophat2/reports') for s in reportsdirs]
-    reportsdirs=[os.path.dirname(s) for s in list(reportsdirs)]
-    shell(r"""
-      cat sample_file.txt | sed 's/.fastq.gz//g' | sed 's/\t.*\//\t/g' \
+  shell:r"""
+      cat {params.sample_reads_file} | sed 's/.fastq.gz//g' | sed 's/\t.*\//\t/g' \
       | awk -vOFS='\t' 'BEGIN{{print "fastqname","samplename"}}{{sumsamp[$1] = sumsamp[$1]+1;print $2,$1"_fq"sumsamp[$1]}}' \
       > multiqc/samplenames.txt
 
-      {multiqcscript} {reportsdirs} -fo $(dirname {output[0]}) -c multiqc_config.yaml --sample-names multiqc/samplenames.txt
-      """)
-
-
+      {params.multiqcscript} {params.reportsdirs} -fo $(dirname {output[0]}) {params.sampnames}
+      """
 
 
 
 rule feature_counts:
      input:
-          GTF,CDSGTF,
+          TRIMCDSGTF=TRIMCDSGTF,
           BAM='star/data/{sample}/{sample}.bam'
      output:
           done = 'feature_counts/data/{sample}/feature_counts'
@@ -583,7 +599,7 @@ rule feature_counts:
           else:
                sys.exit('Protocol not known!')
 
-          library = sampledf.library[wildcards['sample']]
+          library = sampledf.library_layout[wildcards['sample']]
 
           #get library type
           if (library == 'PAIRED'):
@@ -600,22 +616,121 @@ rule feature_counts:
 
 
           sample = wildcards['sample']
-          region = wildcards['region']
-          rangebam = input['readrangefilt']
+          # region = wildcards['region']
+          region = 'CDS'
+          # rangebam = input['readrangefilt']
+
           groupcol = 'gene_id'
           
           shell(r"""
           set -ex
-          mkdir -p feature_counts_readrange/data/{sample}/{region}/{readrange}/
-          mkdir -p feature_counts/reports/{wildcards.sample}/
+          mkdir -p feature_counts/data/{sample}/
+          mkdir -p feature_counts/reports/{sample}/
           featureCounts \
+            -Q 50 \
             -T {threads} \
             -t {region} -g {groupcol} \
-            -a {GTF} \
+            -a {input.TRIMCDSGTF} \
             -s {protocol} {library} {countmultimappers} \
-            -o feature_counts_readrange/data/{sample}/{region}/{readrange}/feature_counts \
-            {rangebam} \
+            -o $(realpath feature_counts/data/{sample}/feature_counts) \
+            $(realpath  {input.BAM}) \
              &> feature_counts/reports/{wildcards.sample}/{wildcards.sample}.feature_counts.log
 
           """)
+
+rule make_riboqc_anno:
+   input : GTF,REF
+   output: touch('riboqc/annot.done')
+   params:
+    speciesname = lambda wc,input: Path(input[1]).name.replace('.fa','') + '.foo',
+    annobase = lambda wc,input: input[0].replace('.gtf',''),
+    outdir = lambda wc,output: output[0].replace('annot.done',''),
+    twobitfile = lambda wc,input: input[1].replace('.fa','.twobit'),
+    gtfmatchchrs = lambda wc,input: input[0].replace('.gtf','.matchchrs.gtf')
+   conda: '../envs/riboseqc'
+   shell:r"""
+         set -x
+     faToTwoBit {REF} {params.twobitfile}
+
+     samtools faidx {REF}
+
+      awk -vOFS="\t" '{{print $1,0,$2}}'  {REF}.fai | bedtools intersect -b -  -a {GTF} > {params.gtfmatchchrs}
+
+     mkdir -p riboqc
+     conda activate R2
+     R -e ' library(RiboseQC); prepare_annotation_files("{params.outdir}","{params.twobitfile}","{params.gtfmatchchrs}","{params.speciesname}","{params.annobase}",forge_BS=FALSE,genome_seq=FaFile("{REF}")) '
+ """
+
+rule run_riboqc:
+   input: 'riboqc/annot.done'
+   output: touch('riboqc/data/{sample}/.done'),'riboqc/data/{sample}/_for_SaTAnn','riboqc/reports/{sample}/riboqcreport.html'
+   # conda: '../envs/riboseqc'
+   params:    
+     annofile = lambda wc,input: input[0].replace('annot.done',Path(GTF).name.replace('.gtf','.matchchrs.gtf_Rannot')),
+     bamfile = lambda wc,input: 'star/data/'+wc['sample']+'/'+wc['sample']+'.bam',
+     outname = lambda wc,output: output[0].replace('.done',''),
+     report_file = lambda wc: 'riboqc/reports/'+wc['sample']+'/'+'riboqcreport.html',
+   shell:r"""
+         set -x
+         mkdir -p {params.outname}
+         mkdir -p riboqc/reports/{wildcards.sample}
+         R -e 'library(RiboseQC);RiboseQC::RiboseQC_analysis("{params.annofile}", bam="{params.bamfile}",rescue_all_rls=TRUE,dest_names="{params.outname}", genome_seq = "{REF}", report_file="{params.report_file}")'
+     """
+
+rule run_satann:
+  input : 'riboqc/data/{sample}/.done','riboqc/annot.done'
+  output: touch('SaTAnn/{sample}/.done')
+  # input: lambda wc: 
+      # ['riboqc/data/'+s+'/.done' for s in samplegroups[wc['groupname']] ]
+  output: touch('SaTAnn/{groupname}/.done')
+  params: 
+    for_satannfile = lambda wc,input: 'c("'+('","'.join(['riboqc/data/'+s+'/''_for_SaTAnn' for s in [wc['sample']] ]))+'")',
+    annofile = lambda wc,input: 'riboqc/'+Path(GTF).name.replace('.gtf','.matchchrs.gtf_Rannot'),
+    outputdir = lambda wc,output: output[0].replace('.done','')
+  threads: 10
+  shell:r"""
+    set -ex
+      mkdir -p {params.outputdir}
+
+      R -e 'devtools::load_all("~/work/Applications/SaTann");run_SaTAnn(for_SaTAnn_file = {params.for_satannfile},annotation_file = "{params.annofile}",genome_seq = "{REF}", n_cores = {threads},prefix="{params.outputdir}") '
+        
+      """
+
+
+
+rule cdsmax:
+  input: 'star/data/{sample}/{sample}.bam',GTF,REF
+  output: 'cdsmax/{sample}/gene_id_counts.tsv','cdsmax/{sample}/cdsmax_offsets.tsv'
+  shell: r"""Rscript --vanilla ../src/offsets_cdsmax.R {input} $(dirname {output[0]}) {STARTCODTRIM} {STOPCODTRIM}"""
+
+
+rule aggregate_feature_counts:
+  input : expand("feature_counts/data/{sample}/feature_counts", sample = samples),
+  output: 'feature_counts/all_feature_counts'
+  run:
+    fcountfiles = list(input)
+    shell(r""" 
+
+       #( (sed '2q;d' {fcountfiles[0]} | cut -f1 && tail -n+3 {fcountfiles[0]}| sort -k1 | cut -f1) > {output})
+       tail -n+3 {fcountfiles[0]}| sort -k1 | cut -f1 > {output}
+       
+       #now for eahc fcount table, join it to the ids
+       for fcountfile in $(echo {fcountfiles}); do
+
+          tail -n+3 $fcountfile| sort -k1 | cut -f1,7 | join {output} - | sort -k1 > {output}tmp
+          mv {output}tmp {output}
+       
+       done
+
+      echo "feature_id {samples}" | cat - {output} > {output}tmp
+      mv {output}tmp {output}
+    
+      """)
+
+rule run_xtail:
+  input: 'feature_counts/all_feature_counts'
+  output: touch('xtail/.done')
+  shell: r"""Rscript ../src/run_xtail.R {input} $(dirname {output})"""
+
+
 

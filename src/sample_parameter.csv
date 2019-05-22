@@ -1,13 +1,13 @@
-sample_id,library_layout,read_pattern,protocol,fragment_length_mean,fragment_length_sd,group,assay
-riboseq_E1,SINGLE,-f *fastq.gz,yes,28,2,Empty,ribo
-riboseq_E2,SINGLE,-f *fastq.gz,yes,28,2,Empty,ribo
-riboseq_E3,SINGLE,-f *fastq.gz,yes,28,2,Empty,ribo
-riboseq_R1,SINGLE,-f *fastq.gz,yes,28,2,Ras,ribo
-riboseq_R2,SINGLE,-f *fastq.gz,yes,28,2,Ras,ribo
-riboseq_R3,SINGLE,-f *fastq.gz,yes,28,2,Ras,ribo
-rnaseq_E1,SINGLE,-f *fastq.gz,yes,400,200,Empty,total
-rnaseq_E2,SINGLE,-f *fastq.gz,yes,400,200,Empty,total
-rnaseq_E3,SINGLE,-f *fastq.gz,yes,400,200,Empty,total
-rnaseq_R1,SINGLE,-f *fastq.gz,yes,400,200,Ras,total
-rnaseq_R2,SINGLE,-f *fastq.gz,yes,400,200,Ras,total
-rnaseq_R3,SINGLE,-f *fastq.gz,yes,400,200,Ras,total
+sample_id,library_layout,read_pattern,protocol,fragment_length_mean,fragment_length_sd,group,treatment,assay
+riboseq_E1,SINGLE,-f *fastq.gz,yes,28,2,riboseq_E,Empty,ribo
+riboseq_E2,SINGLE,-f *fastq.gz,yes,28,2,riboseq_E,Empty,ribo
+riboseq_E3,SINGLE,-f *fastq.gz,yes,28,2,riboseq_E,Empty,ribo
+riboseq_R1,SINGLE,-f *fastq.gz,yes,28,2,riboseq_R,Ras,ribo
+riboseq_R2,SINGLE,-f *fastq.gz,yes,28,2,riboseq_R,Ras,ribo
+riboseq_R3,SINGLE,-f *fastq.gz,yes,28,2,riboseq_R,Ras,ribo
+rnaseq_E1,SINGLE,-f *fastq.gz,reverse,400,200,rnaseq_E,Empty,total
+rnaseq_E2,SINGLE,-f *fastq.gz,reverse,400,200,rnaseq_E,Empty,total
+rnaseq_E3,SINGLE,-f *fastq.gz,reverse,400,200,rnaseq_E,Empty,total
+rnaseq_R1,SINGLE,-f *fastq.gz,reverse,400,200,rnaseq_R,Ras,total
+rnaseq_R2,SINGLE,-f *fastq.gz,reverse,400,200,rnaseq_R,Ras,total
+rnaseq_R3,SINGLE,-f *fastq.gz,reverse,400,200,rnaseq_R,Ras,total

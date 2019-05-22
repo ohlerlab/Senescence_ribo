@@ -10,3 +10,6 @@ QUALLIM: 20
 sample_files: "../src/read_files.csv"
 sample_parameter: "../src/sample_parameter.csv"
 multiqcscript: '../src/multiqc'
+rnaseqpipescriptdir: '~/work/Applications/rna_seq/scripts'
+STARTCODTRIM: 15
+STOPCODTRIM: 5

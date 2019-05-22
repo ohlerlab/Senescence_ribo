@@ -16,6 +16,11 @@
         "h_vmem": "8G",
         "pe": "smp 4"
     },
+    "cdsmax":
+    {
+        "h_vmem": "8G",
+        "pe": "smp 4"
+    },
     "collapse_reads":
     {
         "h_vmem": "8G",
@@ -55,6 +60,18 @@
         "h_vmem": "8G",
         "h_rt": "40:00:00",
         "pe": "smp 1"
+    },
+    "make_bowtie_indices":
+    {
+        "h_vmem": "32G",
+        "h_rt": "40:00:00",
+        "pe": "smp 8"
+    },
+    "star_index":
+    {
+        "h_vmem": "32G",
+        "h_rt": "40:00:00",
+        "pe": "smp 8"
     },
     "star":
     {
