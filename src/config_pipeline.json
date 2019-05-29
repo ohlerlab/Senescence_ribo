@@ -4,7 +4,7 @@
         "h_vmem": "2g",
         "h_rt": "4:00:00",
         "pe": "smp 4",
-8       "P":"medium",
+        "P":"medium",
         "name"      : "JOBNAME.{rule}.{wildcards}",
         "output"    : "logs/cluster/{rule}.{wildcards}.out",
         "error"     : "logs/cluster/{rule}.{wildcards}.err"

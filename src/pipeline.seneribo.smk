@@ -537,9 +537,9 @@ rule qc:
           OUTPUT=${{OUTDIR}}/{wildcards.sample}.picard.alignmentmetrics.txt \
           R={REF}
 
-      {params.scriptdir}/read_duplication.sh \
-        -i {params.bamfile} \
-        -o ${{OUTDIR}}/duplication/
+        {params.scriptdir}/read_duplication.sh \
+         -i {params.bamfile} \
+         -o ${{OUTDIR}}/duplication/
 
           """
      
@@ -682,7 +682,7 @@ rule run_satann:
   output: touch('SaTAnn/{sample}/.done')
   # input: lambda wc: 
       # ['riboqc/data/'+s+'/.done' for s in samplegroups[wc['groupname']] ]
-  output: touch('SaTAnn/{groupname}/.done')
+  # output: touch('SaTAnn/{groupname}/.done')
   params: 
     for_satannfile = lambda wc,input: 'c("'+('","'.join(['riboqc/data/'+s+'/''_for_SaTAnn' for s in [wc['sample']] ]))+'")',
     annofile = lambda wc,input: 'riboqc/'+Path(GTF).name.replace('.gtf','.matchchrs.gtf_Rannot'),
