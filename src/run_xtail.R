@@ -7,11 +7,11 @@ suppressMessages(library(warn.conflicts = FALSE,quietly=TRUE,tidyverse))
 suppressMessages(library(warn.conflicts = FALSE,quietly=TRUE,DESeq2))
 suppressMessages(library(warn.conflicts = FALSE,quietly=TRUE,xtail))
 suppressMessages(library(warn.conflicts = FALSE,quietly=TRUE,here))
-
+select<-dplyr::select
 args <- c(
-  countfile='feature_counts/all_feature_counts',
+  countfile=here('pipeline/feature_counts/all_feature_counts'),
   # uORFcountfile='SaTAnn/uORFs.feature_counts',
-  outdir= 'xtail'
+  outdir= here('pipeline/xtail')
 )
 CONDITIONVAR = 'treatment'
 
@@ -59,8 +59,20 @@ xtailtable <- xtailres$resultsTable%>%rownames_to_column%>%set_colnames(
 
 xtailfile = file.path(outdir,paste0('xtail_',CONDITIONVAR,'.tsv'))
 
+sizefacts <- xtailcounts%>%select(-feature_id)%>%{DESeq2::estimateSizeFactorsForMatrix(.)}
+
+basemeandf<-sweep(xtailcounts%>%select(-feature_id),MARGIN=2,STAT=sizefacts,FUN='/')%>%rowMeans%>%setNames(xtailcounts$feature_id)%>%
+  enframe('feature_id','base_mean')
+
+xtailtable%<>%left_join(basemeandf)%>%select(feature_id,base_mean,everything())
+
+
+xtailtable$padj<-xtailtable$adj_p_value
+xtailtable$log2FoldChange<-xtailtable$log2fc
+xtailtable$log2fc_se<-NA
+
+
 write_tsv(xtailtable,xtailfile)
-  
 
 
 # save.image(file.path('prepimage.R'))

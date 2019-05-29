@@ -1,0 +1,40 @@
+---
+title: "Test Rmd"
+author: "Dermot Harnett"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+---
+
+# Main Title
+
+fooobar!
+
+```{r estupd,echo=F,results='asis'}
+plotfun<-function(i){
+	cat(paste0('\n### sub heading2',letters[i],'\n\n'))
+	
+	plot(i)
+
+	cat(paste0('\n\n'))
+}
+```
+
+## Sub heading1{.tabset .tabset-pills}
+
+
+```{r loop,echo=F,results='asis'}
+
+for(i in 1:2){
+
+	plotfun(i)
+	
+}
+
+```
+
+# Secondbit
+
+

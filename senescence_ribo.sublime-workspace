@@ -4,20 +4,220 @@
 		"selected_items":
 		[
 			[
+				"design",
+				"design_file"
+			],
+			[
+				"make",
+				"makeTxDbFromGFF"
+			],
+			[
+				"memoise",
+				"memoise_one"
+			],
+			[
+				"model",
+				"modeltestscript"
+			],
+			[
+				"cds",
+				"cdstouse"
+			],
+			[
+				"subset",
+				"-subsetByOverlaps"
+			],
+			[
+				"yield",
+				"yieldSize"
+			],
+			[
+				"GRang",
+				"GRangesList"
+			],
+			[
+				"chu",
+				"chunksofsize"
+			],
+			[
+				"STO",
+				"STARTCODTRIM"
+			],
+			[
+				"compar",
+				"compartment"
+			],
+			[
+				"cm",
+				"compartment"
+			],
+			[
+				"transcri",
+				"transcript_id"
+			],
+			[
+				"comar",
+				"compartments"
+			],
+			[
+				"topcds",
+				"topcdsexons"
+			],
+			[
+				"top",
+				"topcds"
+			],
+			[
+				"gname",
+				"gnamematchonly"
+			],
+			[
+				"msg",
+				"ms_gname_n_in_gencode"
+			],
+			[
+				"unipro",
+				"uniprot_id"
+			],
+			[
+				"allpro",
+				"allprotids"
+			],
+			[
+				"trans",
+				"transcript_id"
+			],
+			[
+				"protid",
+				"protiddf"
+			],
+			[
+				"uni",
+				"uniprot"
+			],
+			[
+				"grou",
+				"group_by"
+			],
+			[
+				"Prot",
+				"Protein_IDs"
+			],
+			[
+				"ms",
+				"mstable"
+			],
+			[
+				"couns",
+				"countsmatrix"
+			],
+			[
+				"transcr",
+				"transcripts"
+			],
+			[
+				"GRange",
+				"GRanges"
+			],
+			[
+				"Genomi",
+				"GenomeAxisTrack"
+			],
+			[
+				"log",
+				"logtrans"
+			],
+			[
+				"gene",
+				"genegr"
+			],
+			[
+				"gee",
+				"genegr"
+			],
+			[
+				"stp",
+				"stopifnot"
+			],
+			[
+				"genome",
+				"genomecoords"
+			],
+			[
+				"assay",
+				"assay2get"
+			],
+			[
+				"igene",
+				"igenename"
+			],
+			[
+				"lin",
+				"linearstanfile"
+			],
+			[
+				"parse",
+				"parsedpars"
+			],
+			[
+				"as.t",
+				"as.data.frame"
+			],
+			[
+				"test",
+				"testfile\tT function that tests a file exists"
+			],
+			[
+				"sample",
+				"sampledir"
+			],
+			[
+				"hierar",
+				"hierarchpars"
+			],
+			[
+				"models",
+				"modelsamplefile"
+			],
+			[
+				"modelsample",
+				"modelsampledir"
+			],
+			[
+				"hi",
+				"hierarchpars"
+			],
+			[
+				"hiera",
+				"hierarchstanfile"
+			],
+			[
+				"file.",
+				"file.exists"
+			],
+			[
+				"geom_",
+				"geom_text"
+			],
+			[
+				"row",
+				"rowSums"
+			],
+			[
+				"scR",
+				"scRNAseq_fraction"
+			],
+			[
+				"ribo",
+				"ribosamples"
+			],
+			[
 				"TRE",
 				"TRUE"
 			],
 			[
 				"param",
 				"parameter"
-			],
-			[
-				"parse",
-				"parse_stan_pars"
-			],
-			[
-				"ribo",
-				"riboarray"
 			],
 			[
 				"Length",
@@ -78,10 +278,6 @@
 			[
 				"pept",
 				"peptide"
-			],
-			[
-				"igene",
-				"igeneind"
 			],
 			[
 				"ms_p",
@@ -176,10 +372,6 @@
 				"gene_name_i"
 			],
 			[
-				"gene",
-				"gene_namei"
-			],
-			[
 				"old_",
 				"old_rTE"
 			],
@@ -200,10 +392,6 @@
 				"datacol"
 			],
 			[
-				"cds",
-				"cdsmap_df"
-			],
-			[
 				"mappa",
 				"mappability_"
 			]
@@ -211,6 +399,184 @@
 	},
 	"buffers":
 	[
+		{
+			"file": "/fast/work/groups/ag_ohler/dharnet_m/senescence_ribo/src/offsets_cdsmax.R",
+			"settings":
+			{
+				"buffer_size": 6744,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/cds_offset_count.R",
+			"settings":
+			{
+				"buffer_size": 6292,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/fast/work/groups/ag_ohler/dharnet_m/senescence_ribo/src/trim_coding_sequences.R",
+			"settings":
+			{
+				"buffer_size": 2747,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/fast/work/groups/ag_ohler/dharnet_m/senescence_ribo/src/pipeline.seneribo.smk",
+			"settings":
+			{
+				"buffer_size": 26120,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/fast/work/groups/ag_ohler/dharnet_m/senescence_ribo/Applications/rseq/inst/rmd/de/model.Rmd",
+			"settings":
+			{
+				"buffer_size": 6167,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/fast/work/groups/ag_ohler/dharnet_m/senescence_ribo/src/rseq/testrmd.Rmd",
+			"settings":
+			{
+				"buffer_size": 458,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/fast/work/groups/ag_ohler/dharnet_m/senescence_ribo/Applications/rseq/inst/rmd/de/one_contrast_go.R",
+			"settings":
+			{
+				"buffer_size": 983,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/fast/work/groups/ag_ohler/dharnet_m/senescence_ribo/Applications/rseq/R/build_project_functions.R",
+			"settings":
+			{
+				"buffer_size": 22430,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/fast/work/groups/ag_ohler/dharnet_m/senescence_ribo/Applications/rseq/inst/rmd/de/kegg_results.Rmd",
+			"settings":
+			{
+				"buffer_size": 3318,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/fast/work/groups/ag_ohler/dharnet_m/senescence_ribo/Applications/rseq/inst/rmd/de/one_contrast_de.R",
+			"settings":
+			{
+				"buffer_size": 5020,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/fast/work/groups/ag_ohler/dharnet_m/senescence_ribo/Applications/rseq/inst/rmd/de/counts_diagnostics.Rmd",
+			"settings":
+			{
+				"buffer_size": 5007,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/fast/work/groups/ag_ohler/dharnet_m/senescence_ribo/Applications/rseq/inst/rmd/de/one_contrast_go.Rmd",
+			"settings":
+			{
+				"buffer_size": 1581,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "Applications/rseq/inst/rmd/de/model_comparisons.Rmd",
+			"settings":
+			{
+				"buffer_size": 0,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/fast/work/groups/ag_ohler/dharnet_m/senescence_ribo/Applications/rseq/inst/rmd/de/all_go.Rmd",
+			"settings":
+			{
+				"buffer_size": 437,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/fast/work/groups/ag_ohler/dharnet_m/senescence_ribo/Applications/rseq/inst/rmd/de/one_go.Rmd",
+			"settings":
+			{
+				"buffer_size": 1765,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/fast/work/groups/ag_ohler/dharnet_m/senescence_ribo/src/run_xtail.R",
+			"settings":
+			{
+				"buffer_size": 4207,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/fast/work/groups/ag_ohler/dharnet_m/senescence_ribo/Applications/rseq/R/plot.R",
+			"settings":
+			{
+				"buffer_size": 7786,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/fast/work/groups/ag_ohler/dharnet_m/senescence_ribo/src/rseq/build_project.R",
+			"settings":
+			{
+				"buffer_size": 7657,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/rseq/testrmd.Rmd",
+			"settings":
+			{
+				"buffer_size": 458,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/fast/work/groups/ag_ohler/dharnet_m/senescence_ribo/Applications/rseq/inst/rmd/de/one_contrast_de.Rmd",
+			"settings":
+			{
+				"buffer_size": 5779,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -224,32 +590,152 @@
 		"selected_items":
 		[
 			[
-				"sidebar",
-				"View: Toggle Open Files in Side Bar"
+				"save",
+				"File: Save All"
+			],
+			[
+				"rmarkd",
+				"Build With: knitr-Markdown"
+			],
+			[
+				"rmark",
+				"Build With: knitr-Markdown - Run"
+			],
+			[
+				"file",
+				"Insert File Path"
+			],
+			[
+				"knitr",
+				"Build With: knitr-Markdown - Run"
+			],
+			[
+				"sour",
+				"Build With: R - Source File"
+			],
+			[
+				"build",
+				"Build With: knitr-Markdown"
+			],
+			[
+				"gitignore",
+				"Git: Update Project Ignored Files"
+			],
+			[
+				"giti",
+				"Gitignore: New gitignore"
 			],
 			[
 				"install",
 				"Package Control: Install Package"
 			],
 			[
-				"pyt",
-				"Set Syntax: Python"
-			],
-			[
 				"py",
 				"Set Syntax: Python"
 			],
 			[
-				"open",
-				"Open URL"
+				"sou",
+				"Build With: R - Source File"
+			],
+			[
+				"enable",
+				"Package Control: Enable Package"
+			],
+			[
+				"terminus",
+				"Terminus: Open Default Shell in Panel"
+			],
+			[
+				"commit",
+				"Git: Commit"
+			],
+			[
+				"add",
+				"Git: Add All"
+			],
+			[
+				"copy",
+				"Copy File Path"
+			],
+			[
+				"path",
+				"Copy Path Relative to Project"
+			],
+			[
+				"key bin",
+				"Preferences: Key Bindings"
+			],
+			[
+				"amend",
+				"Git: Amend Commit"
+			],
+			[
+				"edit",
+				"SnippetMaker: Edit Snippet"
+			],
+			[
+				"make",
+				"SnippetMaker: Make Snippet"
+			],
+			[
+				"head",
+				"Snippet: 80 hash header"
+			],
+			[
+				"osur",
+				"Vintageous: Reset"
+			],
+			[
+				"insert",
+				"Insert File Path"
+			],
+			[
+				"extract",
+				"R-IDE: Extract Function"
+			],
+			[
+				"function",
+				"R-IDE: Extract Function"
+			],
+			[
+				"file p",
+				"Insert File Path"
+			],
+			[
+				"unfo",
+				"Code Folding: Unfold All"
+			],
+			[
+				"file path",
+				"Insert File Path"
 			],
 			[
 				"disable",
 				"Package Control: Disable Package"
 			],
 			[
-				"sour",
-				"Build With: R - Source File"
+				"gitingore",
+				"Git: Update Project Ignored Files"
+			],
+			[
+				"pyth",
+				"Set Syntax: Python"
+			],
+			[
+				"project",
+				"Git: Update Project Ignored Files"
+			],
+			[
+				"sidebar",
+				"View: Toggle Open Files in Side Bar"
+			],
+			[
+				"pyt",
+				"Set Syntax: Python"
+			],
+			[
+				"open",
+				"Open URL"
 			],
 			[
 				"source",
@@ -260,16 +746,8 @@
 				"Build With: R - Source File"
 			],
 			[
-				"sou",
-				"Build With: R - Source File"
-			],
-			[
 				"so",
 				"Build With: R - Source File"
-			],
-			[
-				"terminus",
-				"Terminus: Toggle Panel"
 			],
 			[
 				"sendcod",
@@ -330,8 +808,59 @@
 		"side_bar_visible": false,
 		"status_bar_visible": false
 	},
+	"expanded_folders":
+	[
+		"/fast/work/groups/ag_ohler/dharnet_m/senescence_ribo"
+	],
 	"file_history":
 	[
+		"/fast/work/groups/ag_ohler/dharnet_m/senescence_ribo/all_reports.Rmd",
+		"/fast/work/groups/ag_ohler/dharnet_m/senescence_ribo/Applications/rseq/inst/rmd/de/all_go.R",
+		"/fast/work/groups/ag_ohler/dharnet_m/senescence_ribo/Applications/rseq/inst/rmd/de/project_prep.R",
+		"/fast/work/groups/ag_ohler/dharnet_m/senescence_ribo/Applications/rseq/inst/rmd/de/one_go.Rmd",
+		"/fast/work/groups/ag_ohler/dharnet_m/senescence_ribo/Applications/rseq/tests/testthat/project_prep.Rmd",
+		"/fast/work/groups/ag_ohler/dharnet_m/senescence_ribo/Applications/rseq/inst/rmd/de/one_contrast_de.Rmd",
+		"/fast/work/groups/ag_ohler/dharnet_m/senescence_ribo/Applications/rseq/inst/rmd/de/counts_diagnostics.R",
+		"/fast/work/groups/ag_ohler/dharnet_m/senescence_ribo/Applications/rseq/inst/rmd/de/one_gage.Rmd",
+		"/fast/work/groups/ag_ohler/dharnet_m/senescence_ribo/Applications/rseq/inst/rmd/de/one_contrast_goi.Rmd",
+		"/fast/work/groups/ag_ohler/dharnet_m/senescence_ribo/Applications/rseq/R/retrieve.R",
+		"/Users/dharnet/bih_cluster/fast/work/groups/ag_ohler/dharnet_m/senescence_ribo/src/rseq/testshinyapp.Rmd",
+		"/fast/work/groups/ag_ohler/dharnet_m/senescence_ribo/submodel.R",
+		"/fast/work/groups/ag_ohler/dharnet_m/senescence_ribo/Applications/rseq/R/plot.R",
+		"/fast/work/groups/ag_ohler/dharnet_m/senescence_ribo/src/run_xtail.R",
+		"/fast/work/groups/ag_ohler/dharnet_m/senescence_ribo/src/rseq_design.yaml",
+		"/fast/work/groups/ag_ohler/dharnet_m/senescence_ribo/Applications/rseq/inst/rmd/de/one_contrast_go.Rmd",
+		"/fast/work/groups/ag_ohler/dharnet_m/senescence_ribo/.gitignore",
+		"/fast/work/groups/ag_ohler/dharnet_m/senescence_ribo/Applications/rseq/R/build_project_functions.R",
+		"/fast/work/groups/ag_ohler/dharnet_m/senescence_ribo/src/config.yaml",
+		"/fast/work/groups/ag_ohler/dharnet_m/senescence_ribo/pipeline/.snakemake/conda/2bc25986/lib/python3.6/multiprocessing/managers.py",
+		"/fast/work/groups/ag_ohler/dharnet_m/senescence_ribo/src/trim_coding_sequences.R",
+		"/fast/work/groups/ag_ohler/dharnet_m/cortexomics/src/R/trim_coding_sequences.R",
+		"/fast/work/groups/ag_ohler/dharnet_m/cortexomics/src/R/assemble_gage_sets.R",
+		"/Users/dharnet/bih_cluster/fast/work/groups/ag_ohler/dharnet_m/cortexomics/src/R/plotting/gvizcov2.R",
+		"/fast/work/groups/ag_ohler/dharnet_m/cortexomics/src/R/plotting/gvizcov.Rmd",
+		"/fast/work/groups/ag_ohler/dharnet_m/cortexomics/cortexomics.Rmd",
+		"/fast/work/groups/ag_ohler/dharnet_m/cortexomics/src/R/load_data/integrate_exprdata.R",
+		"/fast/work/groups/ag_ohler/dharnet_m/cortexomics/src/R/plotting/gviz_mrna_plots.R",
+		"/fast/work/groups/ag_ohler/dharnet_m/cortexomics/src/R/plotting/gviz_example.R",
+		"/fast/work/groups/ag_ohler/dharnet_m/cortexomics/src/Stan/degmodel_hierarch.stan",
+		"/Users/dharnet/bih_cluster/fast/work/groups/ag_ohler/dharnet_m/cortexomics/src/R/modeling/stan_dirchlet_clustering.R",
+		"/fast/work/groups/ag_ohler/dharnet_m/cortexomics/cortexomics_interactive.Rmd",
+		"/Users/dharnet/Library/Application Support/Sublime Text 3/Packages/User/Snippets/testfile.sublime-snippet",
+		"/fast/work/groups/ag_ohler/dharnet_m/cortexomics/src/R/ribostochiometry/ms_scatterplots.R",
+		"/fast/work/groups/ag_ohler/dharnet_m/cortexomics/src/R/plotting/trajectory_plot_all.R",
+		"/Users/dharnet/Library/Application Support/Sublime Text 3/Packages/User/header.sublime-snippet",
+		"/fast/work/groups/ag_ohler/dharnet_m/cortexomics/.gitignore",
+		"/fast/work/groups/ag_ohler/dharnet_m/cortexomics",
+		"/fast/work/groups/ag_ohler/dharnet_m/Ribo_Lausanne/src/R/getrpkms.R",
+		"/fast/work/groups/ag_ohler/dharnet_m/Ribo_Lausanne/src/getrpkms.R",
+		"/fast/work/groups/ag_ohler/dharnet_m/senescence_ribo/src/pipeline.seneribo.smk",
+		"/Users/dharnet/bih_cluster/fast/work/groups/ag_ohler/dharnet_m/Mitochondrialribo/mitoribo.Rmd",
+		"/fast/work/groups/ag_ohler/dharnet_m/Mitochondrialribo/src/pipeline.mitoribo.smk",
+		"/Users/dharnet/bih_cluster/fast/work/groups/ag_ohler/dharnet_m/Mitochondrialribo/src/config.yaml",
+		"/Users/dharnet/bih_cluster/fast/work/groups/ag_ohler/dharnet_m/Mitochondrialribo/src/config.json",
+		"/fast/work/groups/ag_ohler/dharnet_m/senescence_ribo/pipeline.mitoribo_messy.smk",
+		"/fast/work/groups/ag_ohler/dharnet_m/cortexomics/src/pipeline.snake",
 		"/fast/work/groups/ag_ohler/dharnet_m/Mitochondrialribo/src/pipeline.mitoribo.snake",
 		"/fast/work/groups/ag_ohler/dharnet_m/cortexomics/src/Stan/degmodel_simple_linear.stan",
 		"/fast/work/groups/ag_ohler/dharnet_m/cortexomics/src/Stan/degmodel_nonhierach.stan",
@@ -349,7 +878,6 @@
 		"/fast/work/groups/ag_ohler/dharnet_m/Ribo_Lausanne/src/pipeline.snake",
 		"/fast/work/groups/ag_ohler/dharnet_m/Ribo_Lausanne/pipeline/SaTAnn/OD5P/SaTAnn_Final_ORFs_files",
 		"/Users/dharnet/projects/RiboseQC/vignettes/RiboseQC.Rmd",
-		"/fast/work/groups/ag_ohler/dharnet_m/cortexomics/src/pipeline.snake",
 		"/fast/groups/ag_ohler/work/dharnet_m/satann_working/Satan_working_hg38_genc25_May8.R",
 		"/fast/work/groups/ag_ohler/dharnet_m/satann_working/Satan_working_hg38_genc25_May8.R",
 		"/fast/work/groups/ag_ohler/dharnet_m/Ribo_Lausanne/pipeline/sample_file.txt",
@@ -362,7 +890,6 @@
 		"/Users/dharnet/bih_cluster/fast/work/groups/ag_ohler/dharnet_m/cortexomics/src/pipeline.snake",
 		"/Users/dharnet/bih_cluster/fast/work/groups/ag_ohler/dharnet_m/cortexomics/src/mappability.R",
 		"/fast/work/groups/ag_ohler/dharnet_m/cortexomics/src/R/cell_deconve.R",
-		"/fast/work/groups/ag_ohler/dharnet_m/cortexomics/src/R/assemble_gage_sets.R",
 		"/fast/work/groups/ag_ohler/dharnet_m/cortexomics/pipeline/rseq/design.yaml",
 		"/Users/dharnet/bih_cluster/fast/work/groups/ag_ohler/dharnet_m/cortexomics/exploration/load_data/integrate_exprdata.R",
 		"/Users/dharnet/bih_cluster/fast/work/groups/ag_ohler/dharnet_m/cortexomics/pipeline/rseq/inst/rmd/de/build_project.R",
@@ -390,6 +917,8 @@
 		"height": 101.0,
 		"where_history":
 		[
+			"Applications/rseq",
+			""
 		]
 	},
 	"find_state":
@@ -397,7 +926,54 @@
 		"case_sensitive": true,
 		"find_history":
 		[
-			"starindex"
+			"makeTxDbFromGFF",
+			"memoise_one",
+			"mymemoise",
+			"countfiles",
+			"ddsfiles",
+			"knitr::knit_child",
+			".test=test",
+			",.test=test",
+			".test=test",
+			"myknitchild",
+			".test",
+			".test=test",
+			"is.null(parameters$alt_res_file)",
+			",",
+			"= signif",
+			"base_mean",
+			"testknit",
+			"get_sig_log2",
+			"DT::",
+			"tablefunc",
+			"DT::datatable",
+			"tablefunc",
+			"text='download')",
+			"tablefunc",
+			"DT::datatable",
+			"pmapToTranscripts",
+			"knitr::knit_child",
+			"test=test",
+			"knitr::knit_child",
+			"dds",
+			"ddsfile",
+			"my_log2fc_th",
+			"Mitochondrialribo",
+			"save.image",
+			"reduce",
+			"STARTCODTRIM",
+			"1e4",
+			"1e3",
+			"reduceByYield",
+			"cds",
+			"grstoread",
+			"mapped",
+			"mapToTranscripts",
+			"TRIMCDSGTF",
+			"trimsends",
+			"i",
+			"compartments",
+			"compartment"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -405,6 +981,8 @@
 		"regex": true,
 		"replace_history":
 		[
+			".test=is_markdowntest",
+			"tablefunc"
 		],
 		"reverse": false,
 		"show_context": true,
@@ -415,8 +993,992 @@
 	"groups":
 	[
 		{
+			"selected": 17,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "/fast/work/groups/ag_ohler/dharnet_m/senescence_ribo/src/offsets_cdsmax.R",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 6744,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								5570,
+								5579
+							]
+						],
+						"settings":
+						{
+							"SL.102.region_keys":
+							[
+							],
+							"SL.13.region_keys":
+							[
+							],
+							"SL.14.region_keys":
+							[
+							],
+							"SL.44.region_keys":
+							[
+							],
+							"highlight_line": false,
+							"syntax": "Packages/R/R.sublime-syntax",
+							"translate_tabs_to_spaces": false,
+							"vintage":
+							{
+								"_vintageous_glue_until_normal_mode": true,
+								"action": null,
+								"action_count": "",
+								"mode": "mode_insert",
+								"motion": null,
+								"motion_count": "",
+								"must_capture_register_name": false,
+								"normal_insert_count": "1",
+								"partial_sequence": "",
+								"register": "\"",
+								"sequence": "",
+								"xpos": 0
+							}
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "src/cds_offset_count.R",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 6292,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								5231,
+								5231
+							]
+						],
+						"settings":
+						{
+							"SL.14.region_keys":
+							[
+							],
+							"SL.45.region_keys":
+							[
+							],
+							"SL.50.region_keys":
+							[
+							],
+							"syntax": "Packages/R/R.sublime-syntax",
+							"translate_tabs_to_spaces": false,
+							"vintage":
+							{
+								"_vintageous_glue_until_normal_mode": false,
+								"action": null,
+								"action_count": "",
+								"mode": "mode_normal",
+								"motion": null,
+								"motion_count": "",
+								"must_capture_register_name": false,
+								"normal_insert_count": "1",
+								"partial_sequence": "",
+								"register": "\"",
+								"sequence": "",
+								"xpos": 0
+							}
+						},
+						"translation.x": 0.0,
+						"translation.y": 2259.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "/fast/work/groups/ag_ohler/dharnet_m/senescence_ribo/src/trim_coding_sequences.R",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2747,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								908,
+								908
+							]
+						],
+						"settings":
+						{
+							"SL.14.region_keys":
+							[
+							],
+							"SL.45.region_keys":
+							[
+							],
+							"SL.46.region_keys":
+							[
+							],
+							"SL.69.region_keys":
+							[
+							],
+							"syntax": "Packages/R/R.sublime-syntax",
+							"vintage":
+							{
+								"action": null,
+								"action_count": "",
+								"mode": "mode_normal",
+								"motion": null,
+								"motion_count": "",
+								"must_capture_register_name": false,
+								"partial_sequence": "",
+								"register": "\"",
+								"sequence": "",
+								"xpos": 25
+							}
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 17,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "/fast/work/groups/ag_ohler/dharnet_m/senescence_ribo/src/pipeline.seneribo.smk",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 26120,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								24902,
+								24902
+							]
+						],
+						"settings":
+						{
+							"SL.15.region_keys":
+							[
+							],
+							"SL.53.region_keys":
+							[
+							],
+							"syntax": "Packages/Python/Python.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true,
+							"vintage":
+							{
+								"_vintageous_glue_until_normal_mode": false,
+								"_vintageous_non_interactive": false,
+								"_vintageous_processing_notation": false,
+								"action": null,
+								"action_count": "",
+								"mode": "mode_normal",
+								"motion": null,
+								"motion_count": "",
+								"must_capture_register_name": false,
+								"normal_insert_count": "1",
+								"partial_sequence": "",
+								"register": "\"",
+								"sequence": "",
+								"xpos": 0
+							}
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 19,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "/fast/work/groups/ag_ohler/dharnet_m/senescence_ribo/Applications/rseq/inst/rmd/de/model.Rmd",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 6167,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3477,
+								3476
+							]
+						],
+						"settings":
+						{
+							"SL.64.region_keys":
+							[
+							],
+							"syntax": "Packages/knitr/knitr-Markdown.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true,
+							"vintage":
+							{
+								"_vintageous_glue_until_normal_mode": false,
+								"action": null,
+								"action_count": "",
+								"mode": "mode_normal",
+								"motion": null,
+								"motion_count": "",
+								"must_capture_register_name": false,
+								"normal_insert_count": "1",
+								"partial_sequence": "",
+								"register": "\"",
+								"sequence": "",
+								"xpos": 35
+							}
+						},
+						"translation.x": 0.0,
+						"translation.y": 1950.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "/fast/work/groups/ag_ohler/dharnet_m/senescence_ribo/src/rseq/testrmd.Rmd",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 458,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								432,
+								432
+							]
+						],
+						"settings":
+						{
+							"SL.149.region_keys":
+							[
+							],
+							"syntax": "Packages/knitr/knitr-Markdown.tmLanguage",
+							"vintage":
+							{
+								"_vintageous_glue_until_normal_mode": true,
+								"action": null,
+								"action_count": "",
+								"mode": "mode_insert",
+								"motion": null,
+								"motion_count": "",
+								"must_capture_register_name": false,
+								"normal_insert_count": "1",
+								"partial_sequence": "",
+								"register": "\"",
+								"sequence": "",
+								"xpos": 0
+							}
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "/fast/work/groups/ag_ohler/dharnet_m/senescence_ribo/Applications/rseq/inst/rmd/de/one_contrast_go.R",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 983,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								781,
+								781
+							],
+							[
+								974,
+								974
+							]
+						],
+						"settings":
+						{
+							"SL.93.region_keys":
+							[
+							],
+							"syntax": "Packages/R/R.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true,
+							"vintage":
+							{
+								"_vintageous_glue_until_normal_mode": true,
+								"action": null,
+								"action_count": "",
+								"mode": "mode_insert",
+								"motion": null,
+								"motion_count": "",
+								"must_capture_register_name": false,
+								"normal_insert_count": "1",
+								"partial_sequence": "",
+								"register": "\"",
+								"sequence": "",
+								"xpos": 0
+							}
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 11,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "/fast/work/groups/ag_ohler/dharnet_m/senescence_ribo/Applications/rseq/R/build_project_functions.R",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 22430,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								41,
+								41
+							]
+						],
+						"settings":
+						{
+							"SL.110.region_keys":
+							[
+							],
+							"SL.18.region_keys":
+							[
+							],
+							"syntax": "Packages/R/R.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true,
+							"vintage":
+							{
+								"_vintageous_glue_until_normal_mode": false,
+								"action": null,
+								"action_count": "",
+								"mode": "mode_normal",
+								"motion": null,
+								"motion_count": "",
+								"must_capture_register_name": false,
+								"normal_insert_count": "1",
+								"partial_sequence": "",
+								"register": "\"",
+								"sequence": "",
+								"xpos": 40
+							}
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 9,
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "/fast/work/groups/ag_ohler/dharnet_m/senescence_ribo/Applications/rseq/inst/rmd/de/kegg_results.Rmd",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3318,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								680,
+								680
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/knitr/knitr-Markdown.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true,
+							"vintage":
+							{
+								"_vintageous_glue_until_normal_mode": false,
+								"action": null,
+								"action_count": "",
+								"mode": "mode_normal",
+								"motion": null,
+								"motion_count": "",
+								"must_capture_register_name": false,
+								"normal_insert_count": "1",
+								"partial_sequence": "",
+								"register": "\"",
+								"sequence": "",
+								"xpos": 11
+							}
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 14,
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "/fast/work/groups/ag_ohler/dharnet_m/senescence_ribo/Applications/rseq/inst/rmd/de/one_contrast_de.R",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5020,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2115,
+								2115
+							],
+							[
+								4182,
+								4182
+							]
+						],
+						"settings":
+						{
+							"SL.145.region_keys":
+							[
+							],
+							"SL.23.region_keys":
+							[
+							],
+							"syntax": "Packages/R/R.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true,
+							"vintage":
+							{
+								"_vintageous_glue_until_normal_mode": true,
+								"action": null,
+								"action_count": "",
+								"mode": "mode_insert",
+								"motion": null,
+								"motion_count": "",
+								"must_capture_register_name": false,
+								"normal_insert_count": "1",
+								"partial_sequence": "",
+								"register": "\"",
+								"sequence": "",
+								"xpos": 19
+							}
+						},
+						"translation.x": 0.0,
+						"translation.y": 668.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 13,
+					"type": "text"
+				},
+				{
+					"buffer": 10,
+					"file": "/fast/work/groups/ag_ohler/dharnet_m/senescence_ribo/Applications/rseq/inst/rmd/de/counts_diagnostics.Rmd",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5007,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								430,
+								430
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/knitr/knitr-Markdown.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true,
+							"vintage":
+							{
+								"action": null,
+								"action_count": "",
+								"mode": "mode_normal",
+								"motion": null,
+								"motion_count": "",
+								"must_capture_register_name": false,
+								"partial_sequence": "",
+								"register": "\"",
+								"sequence": "",
+								"xpos": 24
+							}
+						},
+						"translation.x": 0.0,
+						"translation.y": 76.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 15,
+					"type": "text"
+				},
+				{
+					"buffer": 11,
+					"file": "/fast/work/groups/ag_ohler/dharnet_m/senescence_ribo/Applications/rseq/inst/rmd/de/one_contrast_go.Rmd",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1581,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1381,
+								1381
+							]
+						],
+						"settings":
+						{
+							"SL.115.region_keys":
+							[
+							],
+							"syntax": "Packages/knitr/knitr-Markdown.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true,
+							"vintage":
+							{
+								"_vintageous_glue_until_normal_mode": false,
+								"action": null,
+								"action_count": "",
+								"mode": "mode_normal",
+								"motion": null,
+								"motion_count": "",
+								"must_capture_register_name": false,
+								"normal_insert_count": "1",
+								"partial_sequence": "",
+								"register": "\"",
+								"sequence": "",
+								"xpos": 37
+							}
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 10,
+					"type": "text"
+				},
+				{
+					"buffer": 12,
+					"file": "Applications/rseq/inst/rmd/de/model_comparisons.Rmd",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 0,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/knitr/knitr-Markdown.tmLanguage",
+							"vintage":
+							{
+								"action": null,
+								"action_count": "",
+								"mode": "mode_normal",
+								"motion": null,
+								"motion_count": "",
+								"must_capture_register_name": false,
+								"partial_sequence": "",
+								"register": "\"",
+								"sequence": "",
+								"xpos": 0
+							}
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 13,
+					"file": "/fast/work/groups/ag_ohler/dharnet_m/senescence_ribo/Applications/rseq/inst/rmd/de/all_go.Rmd",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 437,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								94,
+								94
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/knitr/knitr-Markdown.tmLanguage",
+							"vintage":
+							{
+								"_vintageous_glue_until_normal_mode": false,
+								"action": null,
+								"action_count": "",
+								"mode": "mode_normal",
+								"motion": null,
+								"motion_count": "",
+								"must_capture_register_name": false,
+								"normal_insert_count": "1",
+								"partial_sequence": "",
+								"register": "\"",
+								"sequence": "",
+								"xpos": 21
+							}
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 8,
+					"type": "text"
+				},
+				{
+					"buffer": 14,
+					"file": "/fast/work/groups/ag_ohler/dharnet_m/senescence_ribo/Applications/rseq/inst/rmd/de/one_go.Rmd",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1765,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								678,
+								678
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/knitr/knitr-Markdown.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true,
+							"vintage":
+							{
+								"_vintageous_glue_until_normal_mode": false,
+								"action": null,
+								"action_count": "",
+								"mode": "mode_normal",
+								"motion": null,
+								"motion_count": "",
+								"must_capture_register_name": false,
+								"normal_insert_count": "1",
+								"partial_sequence": "",
+								"register": "\"",
+								"sequence": "",
+								"xpos": 0
+							}
+						},
+						"translation.x": 0.0,
+						"translation.y": 294.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				},
+				{
+					"buffer": 15,
+					"file": "/fast/work/groups/ag_ohler/dharnet_m/senescence_ribo/src/run_xtail.R",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4207,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3037,
+								3037
+							]
+						],
+						"settings":
+						{
+							"SL.106.region_keys":
+							[
+							],
+							"SL.28.region_keys":
+							[
+							],
+							"syntax": "Packages/R/R.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true,
+							"vintage":
+							{
+								"_vintageous_glue_until_normal_mode": false,
+								"action": null,
+								"action_count": "",
+								"mode": "mode_normal",
+								"motion": null,
+								"motion_count": "",
+								"must_capture_register_name": false,
+								"normal_insert_count": "1",
+								"partial_sequence": "",
+								"register": "\"",
+								"sequence": "",
+								"xpos": 0
+							}
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 16,
+					"type": "text"
+				},
+				{
+					"buffer": 16,
+					"file": "/fast/work/groups/ag_ohler/dharnet_m/senescence_ribo/Applications/rseq/R/plot.R",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 7786,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2383,
+								2383
+							]
+						],
+						"settings":
+						{
+							"SL.100.region_keys":
+							[
+							],
+							"SL.29.region_keys":
+							[
+							],
+							"syntax": "Packages/R/R.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true,
+							"vintage":
+							{
+								"action": null,
+								"action_count": "",
+								"mode": "mode_normal",
+								"motion": null,
+								"motion_count": "",
+								"must_capture_register_name": false,
+								"partial_sequence": "",
+								"register": "\"",
+								"sequence": "",
+								"xpos": 73
+							}
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 18,
+					"type": "text"
+				},
+				{
+					"buffer": 17,
+					"file": "/fast/work/groups/ag_ohler/dharnet_m/senescence_ribo/src/rseq/build_project.R",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 7657,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								638,
+								638
+							]
+						],
+						"settings":
+						{
+							"SL.30.region_keys":
+							[
+							],
+							"SL.49.region_keys":
+							[
+							],
+							"SL.55.region_keys":
+							[
+							],
+							"highlight_line": false,
+							"syntax": "Packages/R/R.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true,
+							"vintage":
+							{
+								"_vintageous_glue_until_normal_mode": false,
+								"action": null,
+								"action_count": "",
+								"mode": "mode_normal",
+								"motion": null,
+								"motion_count": "",
+								"must_capture_register_name": false,
+								"normal_insert_count": "1",
+								"partial_sequence": "",
+								"register": "\"",
+								"sequence": "",
+								"xpos": 7
+							}
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 18,
+					"file": "src/rseq/testrmd.Rmd",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 458,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								179,
+								179
+							]
+						],
+						"settings":
+						{
+							"SL.122.region_keys":
+							[
+							],
+							"syntax": "Packages/knitr/knitr-Markdown.tmLanguage",
+							"vintage":
+							{
+								"_vintageous_glue_until_normal_mode": true,
+								"action": null,
+								"action_count": "",
+								"mode": "mode_insert",
+								"motion": null,
+								"motion_count": "",
+								"must_capture_register_name": false,
+								"normal_insert_count": "1",
+								"partial_sequence": "",
+								"register": "\"",
+								"sequence": "",
+								"xpos": 0
+							}
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 19,
+					"file": "/fast/work/groups/ag_ohler/dharnet_m/senescence_ribo/Applications/rseq/inst/rmd/de/one_contrast_de.Rmd",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5779,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2592,
+								2592
+							],
+							[
+								4854,
+								4854
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/knitr/knitr-Markdown.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true,
+							"vintage":
+							{
+								"_vintageous_glue_until_normal_mode": true,
+								"action": null,
+								"action_count": "",
+								"mode": "mode_insert",
+								"motion": null,
+								"motion_count": "",
+								"must_capture_register_name": false,
+								"normal_insert_count": "1",
+								"partial_sequence": "",
+								"register": "\"",
+								"sequence": "",
+								"xpos": 9
+							}
+						},
+						"translation.x": 0.0,
+						"translation.y": 2288.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 12,
+					"type": "text"
+				}
 			]
 		}
 	],
@@ -451,6 +2013,10 @@
 		]
 	},
 	"menu_visible": true,
+	"output.SublimeLinter":
+	{
+		"height": 0.0
+	},
 	"output.Terminus":
 	{
 		"height": 518.0
@@ -459,16 +2025,24 @@
 	{
 		"height": 440.0
 	},
+	"output.exec":
+	{
+		"height": 257.0
+	},
 	"output.find_results":
 	{
 		"height": 0.0
+	},
+	"output.git":
+	{
+		"height": 102.0
 	},
 	"output.mdpopups":
 	{
 		"height": 0.0
 	},
 	"pinned_build_system": "",
-	"project": "",
+	"project": "senescence_ribo.sublime-project",
 	"replace":
 	{
 		"height": 50.0
@@ -481,8 +2055,240 @@
 		"selected_items":
 		[
 			[
+				"build",
+				"src/rseq/build_project.R"
+			],
+			[
+				"test",
+				"src/rseq/testrmd.Rmd"
+			],
+			[
+				"model",
+				"Applications/rseq/inst/rmd/de/model.Rmd"
+			],
+			[
+				"Rmd",
+				"all_reports.Rmd"
+			],
+			[
+				"buil",
+				"src/rseq/build_project.R"
+			],
+			[
+				"one_go.Rmd",
+				"Applications/rseq/inst/rmd/de/one_go.Rmd"
+			],
+			[
+				"all_go.Rmd",
+				"Applications/rseq/inst/rmd/de/all_go.Rmd"
+			],
+			[
+				"all_go",
+				"Applications/rseq/inst/rmd/de/all_go.R"
+			],
+			[
+				"build_proj",
+				"Applications/rseq/R/build_project_functions.R"
+			],
+			[
+				"project",
+				"Applications/rseq/inst/rmd/de/project_prep.R"
+			],
+			[
+				"one_",
+				"Applications/rseq/inst/rmd/de/one_go.Rmd"
+			],
+			[
+				"one_contrast_go",
+				"Applications/rseq/inst/rmd/de/one_contrast_go.Rmd"
+			],
+			[
+				"project_pr",
+				"Applications/rseq/inst/rmd/de/project_prep.R"
+			],
+			[
+				"project_",
+				"Applications/rseq/tests/testthat/project_prep.Rmd"
+			],
+			[
+				"one_go",
+				"Applications/rseq/inst/rmd/de/one_go.Rmd"
+			],
+			[
+				"one_contrast",
+				"Applications/rseq/inst/rmd/de/one_contrast_de.Rmd"
+			],
+			[
+				"one_contrast_de",
+				"Applications/rseq/inst/rmd/de/one_contrast_de.Rmd"
+			],
+			[
+				"",
+				"Applications/rseq/R/build_project_functions.R"
+			],
+			[
+				"diagno",
+				"Applications/rseq/inst/rmd/de/counts_diagnostics.Rmd"
+			],
+			[
+				"diag",
+				"Applications/rseq/inst/rmd/de/counts_diagnostics.R"
+			],
+			[
+				"retr",
+				"Applications/rseq/R/retrieve.R"
+			],
+			[
+				"build_proje",
+				"Applications/rseq/R/build_project_functions.R"
+			],
+			[
+				"one_cont",
+				"Applications/rseq/inst/rmd/de/one_contrast_de.Rmd"
+			],
+			[
+				"build_pr",
+				"src/rseq/build_project.R"
+			],
+			[
+				"ret",
+				"Applications/rseq/R/retrieve.R"
+			],
+			[
+				"xtail",
+				"src/run_xtail.R"
+			],
+			[
+				"retrie",
+				"Applications/rseq/R/retrieve.R"
+			],
+			[
+				"retrive",
+				"Applications/rseq/R/retrieve.R"
+			],
+			[
+				"function",
+				"Applications/rseq/R/build_project_functions.R"
+			],
+			[
+				"fun",
+				"Applications/rseq/R/build_project_functions.R"
+			],
+			[
+				"build_pro",
+				"Applications/rseq/R/build_project_functions.R"
+			],
+			[
+				"contrast",
+				"Applications/rseq/inst/rmd/de/one_contrast_de.R"
+			],
+			[
+				"one_oc",
+				"Applications/rseq/inst/rmd/de/one_contrast_de.Rmd"
+			],
+			[
+				"offse",
+				"src/offsets_cdsmax.R"
+			],
+			[
+				"counts",
+				"Applications/rseq/inst/rmd/de/counts_diagnostics.R"
+			],
+			[
+				"funct",
+				"Applications/rseq/R/build_project_functions.R"
+			],
+			[
+				"one",
+				"Applications/rseq/inst/rmd/de/one_contrast_de.Rmd"
+			],
+			[
+				"one_con",
+				"Applications/rseq/inst/rmd/de/one_contrast_de.Rmd"
+			],
+			[
+				"build_",
+				"src/rseq/build_project.R"
+			],
+			[
+				"des",
+				"src/rseq_design.yaml"
+			],
+			[
+				"desig",
+				"src/rseq_design.yaml"
+			],
+			[
+				"rseq",
+				"src/rseq_design.yaml"
+			],
+			[
+				"rseq_",
+				"src/rseq_design.yaml"
+			],
+			[
+				"fu",
+				"Applications/rseq/R/build_project_functions.R"
+			],
+			[
+				"functions",
+				"Applications/rseq/R/build_project_functions.R"
+			],
+			[
+				"one_conr",
+				"Applications/rseq/inst/rmd/de/one_contrast_de.Rmd"
+			],
+			[
+				"offsets",
+				"src/offsets_cdsmax.R"
+			],
+			[
+				"config",
+				"src/config.yaml"
+			],
+			[
 				"pip",
-				"/fast/work/groups/ag_ohler/dharnet_m/Ribo_Lausanne/src/pipeline.snake"
+				"src/pipeline.seneribo.smk"
+			],
+			[
+				"trim",
+				"src/trim_coding_sequences.R"
+			],
+			[
+				"rf_",
+				"src/R/rf_offsets.R"
+			],
+			[
+				"degred",
+				"src/R/modeling/degredation_rstan.R"
+			],
+			[
+				".stan",
+				"src/Stan/degmodel_hierarch.stan"
+			],
+			[
+				"traj",
+				"src/R/modeling/degredation_trajplot.R"
+			],
+			[
+				"scatter",
+				"src/R/ribostochiometry/ms_scatterplots.R"
+			],
+			[
+				"traject",
+				"src/R/plotting/trajectory_plot_all.R"
+			],
+			[
+				"notes",
+				"src/projectnotes.txt"
+			],
+			[
+				"process",
+				"src/process_satann.R"
+			],
+			[
+				"confi",
+				"src/config.yaml"
 			]
 		],
 		"width": 0.0
@@ -508,19 +2314,19 @@
 	"selected_group": 0,
 	"settings":
 	{
-		"_vintageous_last_buffer_search": "gffread",
+		"_vintageous_last_buffer_search": "asis",
 		"_vintageous_last_buffer_search_command": "vi_slash",
 		"_vintageous_reset_during_init": true,
 		"vintage":
 		{
-			"_cmdline_cd": "/fast/work/groups/ag_ohler/dharnet_m/Mitochondrialribo/src"
+			"_cmdline_cd": "/fast/work/groups/ag_ohler/dharnet_m/senescence_ribo/Applications/rseq/R"
 		}
 	},
 	"show_minimap": true,
 	"show_open_files": true,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 201.0,
+	"side_bar_width": 296.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{

@@ -700,8 +700,15 @@ rule run_satann:
 
 rule cdsmax:
   input: 'star/data/{sample}/{sample}.bam',GTF,REF
-  output: 'cdsmax/{sample}/gene_id_counts.tsv','cdsmax/{sample}/cdsmax_offsets.tsv'
-  shell: r"""Rscript --vanilla ../src/offsets_cdsmax.R {input} $(dirname {output[0]}) {STARTCODTRIM} {STOPCODTRIM}"""
+  output: 'cdsmax/{sample}/cdsmax_offsets.tsv'
+  shell: r"""Rscript --vanilla ../src/offsets_cdsmax.R {input} $(dirname {output[0]})"""
+
+rule cds_offset_count:
+  input: 'star/data/{sample}/{sample}.bam',GTF,REF,'cdsmax/{sample}/cdsmax_offsets.tsv'
+  output: 'cdsmax/{sample}/gene_id_counts.tsv',
+  shell: r"""Rscript --vanilla ../src/cds_offset_count.R {input} $(dirname {output[0]}) {STARTCODTRIM} {STOPCODTRIM}"""
+
+
 
 
 rule aggregate_feature_counts:
