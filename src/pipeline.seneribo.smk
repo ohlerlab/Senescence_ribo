@@ -113,6 +113,7 @@ rule cutadapt_reads:
 rule collapse_reads:
     input: 'cutadapt_reads/{sample}/{fastq}'
     output: 'collapse_reads/{sample}/{fastq}'
+    params: collapse_reads_script = config['collapse_reads_script']
     run:
         sample = wildcards['sample']
         shell(r"""
@@ -121,7 +122,7 @@ rule collapse_reads:
        mkdir -p collapse_reads/{sample}/
      
        zcat {input}  \
-         | ~/work/bin/collapse_reads.pl {wildcards.sample} \
+         | {params.collapse_reads_script} {wildcards.sample} \
          2> collapse_reads/{wildcards.sample}/{wildcards.fastq}.collreadstats.txt \
          | cat > {output}
      """)
